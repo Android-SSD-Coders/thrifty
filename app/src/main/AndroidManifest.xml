@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
-            android:name=".MainActivity"
+            android:name=".Splash"
             android:exported="false" />
         <activity
             android:name=".Signin"
@@ -22,7 +22,7 @@
             android:name=".Signup"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
