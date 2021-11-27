@@ -4,15 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toolbar;
 
-public class Signup extends AppCompatActivity {
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
+public class Signup extends AppCompatActivity {
+    public static final String TAG = "SignUp";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        EditText emailText = findViewById(R.id.editTextTextPersonName5);
+        EditText password = findViewById(R.id.editTextTextPassword);
+        Button btnSignUp  = findViewById(R.id.signup);
+        Button btnSignIn = findViewById(R.id.signin);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -23,12 +39,55 @@ public class Signup extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+            Amplify.configure(getApplicationContext());
+
+
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
+        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Signup.this, ConfirmationPage.class);
                 startActivity(intent);
             }
         });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Signup.this, Signin.class);
+                startActivity(intent);
+            }
+        });
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.fetchAuthSession(
+                        result -> Log.i("AmplifyQuickstart", result.toString()),
+                        error -> Log.e("AmplifyQuickstart", error.toString())
+                );
+                AuthSignUpOptions options = AuthSignUpOptions.builder()
+                        .userAttribute(AuthUserAttributeKey.email(), emailText.getText().toString())
+                        .build();
+
+                Amplify.Auth.signUp(emailText.getText().toString(), password.getText().toString(), options,
+                        result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
+                        error -> Log.e("AuthQuickStart", "Sign up failed", error)
+                );
+
+
+                Intent intent = new Intent(Signup.this, ConfirmationPage.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
