@@ -4,6 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_heart_svgrepo_com.xml" value="0.1796875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1796875" />
+        <entry key="app/src/main/res/drawable/ic_outline_heart_svgrepo_com.xml" value="0.1796875" />
+        <entry key="app/src/main/res/drawable/selector_wishlist_item.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15462962962962962" />
+        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.15462962962962962" />
+        <entry key="app/src/main/res/layout/fragment_product.xml" value="0.15462962962962962" />
       </map>
     </option>
   </component>
