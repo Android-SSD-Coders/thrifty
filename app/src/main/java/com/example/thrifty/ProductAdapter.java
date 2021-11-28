@@ -1,67 +1,69 @@
 package com.example.thrifty;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.datastore.generated.model.Product;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>  {
-    List<Product> allProducts = new ArrayList<>();
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-    public ProductAdapter(List<Product> allProducts) {
-        this.allProducts = allProducts;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>  {
+
+    private Context context;
+    List<ProductModel> productModelList = new ArrayList<>();
+
+    public ProductAdapter(Context context, List<ProductModel> productModelList) {
+        this.context = context;
+        this.productModelList = productModelList;
     }
 
-    public static class ProductViewHolder extends RecyclerView.ViewHolder{
-        public Product product;
-        View itemView;
-
+    public class ProductViewHolder extends RecyclerView.ViewHolder{
+        @BindView(R.id.imageView)
+        ImageView imageView;
+        @BindView(R.id.txtName)
+        TextView txtName;
+        @BindView(R.id.txtPrice)
+        TextView txtPrice;
+        private Unbinder unbinder;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.itemView = itemView;
+            unbinder = ButterKnife.bind(this, itemView);
         }
     }
 
+
+
     @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_product,viewGroup,false);
-        ProductViewHolder productViewHolder = new ProductViewHolder(view);
-        return productViewHolder;    }
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        return new ProductViewHolder(LayoutInflater.from(context)
+                .inflate(R.layout.layout_product_item,parent,false));
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder productViewHolder, @SuppressLint("RecyclerView") int position) {
-        productViewHolder.product = allProducts.get(position);
-        TextView productTitle = productViewHolder.itemView.findViewById(R.id.productTitleInFragment);
-        TextView productCategory = productViewHolder.itemView.findViewById(R.id.productCategoryInFragment);
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        Glide.with(context)
+                .load(productModelList.get(position).getImage())
+                .into(holder.imageView);
+        holder.txtPrice.setText(new StringBuilder("$").append(productModelList.get(position).getPrice()));
+        holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getName()));
 
-        productTitle.setText(productViewHolder.product.getTitle());
-        productCategory.setText(productViewHolder.product.getCategory().toString());
-
-
-        productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ProductDetails.class);
-                intent.putExtra("title", allProducts.get(position).getTitle());
-                intent.putExtra("category", allProducts.get(position).getCategory().toString());
-                view.getContext().startActivity(intent);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return allProducts.size();
+        return productModelList.size();
     }
 }

@@ -13,4 +13,9 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.MaterialButton" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorButtonNormal">@color/purple_700</item>
+        <item name="colorControlHighlight">@color/teal_200</item>
+    </style>
 </resources>

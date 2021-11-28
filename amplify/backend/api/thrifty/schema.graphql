@@ -1,7 +1,7 @@
 type Category @model {
   id: ID!
   name: String!
-  products: [Product] @connection(keyName: "byCategory", fields: ["id"])
+  productModels: [Product] @connection(keyName: "byCategory", fields: ["id"])
 }
 
 type Product @model @key(name: "byCategory", fields: ["categoryID"]) {
@@ -15,6 +15,6 @@ type Product @model @key(name: "byCategory", fields: ["categoryID"]) {
 type Comment @model @key(name: "byProduct", fields: ["productID", "content"]) {
   id: ID!
   productID: ID!
-  product: Product @connection(fields: ["productID"])
+  productModel: Product @connection(fields: ["productID"])
   content: String!
 }
