@@ -2,4 +2,19 @@
     <string name="app_name">Thrifty</string>
     <string name="channel_name">channel_name</string>
     <string name="channel_description">channel_description</string>
+
+    <string-array name="shop">
+        <item>women</item>
+        <item>men</item>
+        <item>kids</item>
+        <item>belt</item>
+        <item>Accessories</item>
+    </string-array>
+
+    <string-array name="size">
+        <item>small</item>
+        <item>meduim</item>
+        <item>large</item>
+        <item>xlarge</item>
+    </string-array>
 </resources>

@@ -1,0 +1,16 @@
+type Category @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  Products: [Product] @connection(keyName: "byCategory", fields: ["id"])
+}
+
+type Product @model @auth(rules: [{allow: private}]) @key(name: "byCategory", fields: ["categoryID"]) {
+  id: ID!
+  title: String!
+  description: String!
+  price: String!
+  size: String!
+  color: String!
+  categoryID: ID
+}
+ 

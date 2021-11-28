@@ -3,20 +3,30 @@ package com.example.thrifty;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
 
 
 import android.util.Log;
-import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -29,12 +39,15 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.Endpoin
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileUser;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
+import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+
 
 public class MainActivity extends AppCompatActivity {
     private static PinpointManager pinpointManager;
@@ -44,41 +57,69 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
         createNotificationChannel();
         try {
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+//            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
-findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, Signup.class);
-        startActivity(intent);
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Signup.class);
+                startActivity(intent);
+            }
+        });
+
+        Button logOut = findViewById(R.id.logout);
+        logOut.setOnClickListener(view -> {
+            Amplify.Auth.signOut(
+                    () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                    error -> Log.e("not complemte", error.toString())
+            );
+            Intent intent = new Intent(MainActivity.this, Signin.class);
+            startActivity(intent);
+        });
+
+
+
+        Button admin = findViewById(R.id.admin);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Admin.class);
+                startActivity(intent);
+            }
+        });
+
     }
-});
 
-//        playButton = (Button) findViewById(R.id.close);
-//        playButton.setVisibility(View.VISIBLE);
-//        playButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //when play is clicked show stop button and hide play button
-//                playButton.setVisibility(View.GONE);
-//                stopButton.setVisibility(View.VISIBLE);
-//            }
-//        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Button stopButton = (Button) findViewById(R.id.admin);
+        stopButton.setVisibility(View.GONE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String email1 = sharedPreferences.getString("email", "Your email");
+        if (email1.equals("hebaalmomani1998@gmail.com")){
+            stopButton.setVisibility(View.VISIBLE);
+            TextView email = findViewById(R.id.email1);
+            email.setText(email1);
+        }
     }
     public static PinpointManager getPinpointManager(Context applicationContext) {
         if (pinpointManager == null) {

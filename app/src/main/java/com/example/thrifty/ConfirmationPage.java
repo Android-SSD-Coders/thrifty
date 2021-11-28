@@ -59,6 +59,9 @@ public class ConfirmationPage extends AppCompatActivity {
                         result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
+
+                Intent intent = new Intent(ConfirmationPage.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }

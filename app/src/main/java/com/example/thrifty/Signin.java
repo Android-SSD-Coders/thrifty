@@ -8,9 +8,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
@@ -50,7 +52,6 @@ public class Signin extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent   = new Intent(Signin.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -61,14 +62,16 @@ public class Signin extends AppCompatActivity {
                 Amplify.Auth.signIn(
                         emailText.getText().toString(),
                         passwordSignIn.getText().toString(),
-                        result -> Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"),
+                        result -> {
+                            Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete");
+                            Intent intent = new Intent(Signin.this, MainActivity.class);
+                            startActivity(intent);
+                        },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
                 editor.putString("email",emailText.getText().toString());
                 editor.apply();
 
-                Intent intent = new Intent(Signin.this, MainActivity.class);
-                startActivity(intent);
             }
         });
     }
