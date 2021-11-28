@@ -3,16 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/layout/activity_main.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_confirmation_page.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_signin.xml" value="0.15657894736842104" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_splash.xml" value="0.15657894736842104" />
-=======
-        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/layout/activity_main.xml" value="0.25" />
->>>>>>> f85ee92365a13733ec07fcc60e71dcf233cd6643
+
+
+        <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/drawable-v24/ic_arrow_left.xml" value="0.10989583333333333" />
       </map>
     </option>
   </component>
