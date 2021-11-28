@@ -3,11 +3,18 @@ package com.example.thrifty;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+
+import android.view.View;
+import android.widget.Button;
+
+
+
 import android.util.Log;
 import android.widget.EditText;
 
@@ -50,6 +57,28 @@ public class MainActivity extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
+findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, Signup.class);
+        startActivity(intent);
+    }
+});
+
+//        playButton = (Button) findViewById(R.id.close);
+//        playButton.setVisibility(View.VISIBLE);
+//        playButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //when play is clicked show stop button and hide play button
+//                playButton.setVisibility(View.GONE);
+//                stopButton.setVisibility(View.VISIBLE);
+//            }
+//        });
+
+
+
+
     }
     public static PinpointManager getPinpointManager(Context applicationContext) {
         if (pinpointManager == null) {
