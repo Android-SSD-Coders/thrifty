@@ -64,21 +64,6 @@ findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
         startActivity(intent);
     }
 });
-
-//        playButton = (Button) findViewById(R.id.close);
-//        playButton.setVisibility(View.VISIBLE);
-//        playButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //when play is clicked show stop button and hide play button
-//                playButton.setVisibility(View.GONE);
-//                stopButton.setVisibility(View.VISIBLE);
-//            }
-//        });
-
-
-
-
     }
     public static PinpointManager getPinpointManager(Context applicationContext) {
         if (pinpointManager == null) {

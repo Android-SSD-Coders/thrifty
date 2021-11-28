@@ -39,19 +39,6 @@ public class Signup extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        try {
-            // Add these lines to add the AWSApiPlugin plugins
-            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
-//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
-            Amplify.configure(getApplicationContext());
-
-
-            Log.i(TAG, "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e(TAG, "Could not initialize Amplify", error);
-        }
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
