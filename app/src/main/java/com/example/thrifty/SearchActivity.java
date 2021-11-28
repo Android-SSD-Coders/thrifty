@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -30,33 +31,29 @@ public class SearchActivity extends AppCompatActivity {
         initViews();
         bottomNav();
     }
+    public void bottomNav(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.search);
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+//        BottomNavigationItemView cart = findViewById(R.id.cart);
+//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+//        BottomNavigationItemView profile = findViewById(R.id.profile);
 
-    private void bottomNav() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.homeNav:
-                        Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        break;
-
-                    case R.id.search:
-
-                        break;
-
-                    case R.id.cart:
-
-                        break;
-
-                    default:
-                        break;
-                }
-                return false;
-            }
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
     }
+
 
     private void initViews() {
         toolbar = findViewById(R.id.toolbar);

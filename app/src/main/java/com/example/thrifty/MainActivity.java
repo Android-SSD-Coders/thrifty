@@ -27,6 +27,7 @@ import com.example.thrifty.adapters.NewItemsAdapter;
 import com.example.thrifty.adapters.PopularItemsAdapter;
 import com.example.thrifty.adapters.SuggestedItemsAdapter;
 import com.example.thrifty.fragments.MainMenuFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity  {
      NewItemsAdapter newItemsAdapter;
      SuggestedItemsAdapter suggestedItemsAdapter;
      PopularItemsAdapter popularItemsAdapter;
-     BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity  {
 //TODO This shit crashes the APP We Need To Fix It
 //        mainMenuFragment.bottomNav();
 // bottomNav();
+
+        bottomNav();
         initRecyclerViews();
 
 
@@ -76,6 +79,29 @@ public class MainActivity extends AppCompatActivity  {
 //        startActivity(intent);
 //    }
 //});
+
+    }
+
+    public void bottomNav(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.homeNav);
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+//        BottomNavigationItemView cart = findViewById(R.id.cart);
+//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+//        BottomNavigationItemView profile = findViewById(R.id.profile);
+
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
 
     }
 
@@ -94,49 +120,51 @@ private void initRecyclerViews(){
     popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
 }
 
-@SuppressLint("NonConstantResourceId")
-private void bottomNav(){
-    bottomNavigationView.setSelectedItemId(R.id.search);
-    bottomNavigationView.setOnItemSelectedListener(item -> {
-        switch (item.getItemId()){
-            case R.id.homeNav:
-//                Toast.makeText(getApplicationContext(),"Home Clicked", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(getContext(), MainActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
-                break;
+//@SuppressLint("NonConstantResourceId")
+//private void bottomNav(){
+//    bottomNavigationView.setSelectedItemId(R.id.search);
+//    bottomNavigationView.setOnItemSelectedListener(item -> {
+//        switch (item.getItemId()){
+//            case R.id.homeNav:
+////                Toast.makeText(getApplicationContext(),"Home Clicked", Toast.LENGTH_LONG).show();
+////                Intent intent = new Intent(getContext(), MainActivity.class);
+////                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+////                startActivity(intent);
+//                break;
+//
+//            case R.id.search:
+//                Toast.makeText(getApplicationContext(),"Search Clicked", Toast.LENGTH_LONG).show();
+//                Intent intent1 = new Intent(MainActivity.this, SearchActivity.class);
+//                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent1);
+//                break;
+//
+//            case R.id.cart:
+//                Toast.makeText(getApplicationContext(),"Cart Clicked", Toast.LENGTH_LONG).show();
+////                    Intent intent2 = new Intent(getContext(), Cart.class);
+////                    intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+////                    startActivity(intent2);
+//                break;
+//            case R.id.wishlist:
+//                Toast.makeText(getApplicationContext(),"Wishlist Clicked", Toast.LENGTH_LONG).show();
+////                    Intent intent3 = new Intent(MainActivity.this, Wishlist.class);
+////                    intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+////                    startActivity(intent3);
+//                break;
+//
+//            case R.id.profile:
+//                Toast.makeText(getApplicationContext(),"Profile Clicked", Toast.LENGTH_LONG).show();
+////                    Intent intent4 = new Intent(MainActivity.this, Profile.class);
+////                    intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+////                    startActivity(intent4);
+//                break;
+//            default:
+//                Toast.makeText(getApplicationContext(),"None", Toast.LENGTH_LONG).show();
+//                break;
+//        }
+//        return false;
+//    });
 
-            case R.id.search:
-                Toast.makeText(getApplicationContext(),"Search Clicked", Toast.LENGTH_LONG).show();
-                Intent intent1 = new Intent(MainActivity.this, SearchActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent1);
-                break;
 
-            case R.id.cart:
-                Toast.makeText(getApplicationContext(),"Cart Clicked", Toast.LENGTH_LONG).show();
-//                    Intent intent2 = new Intent(getContext(), Cart.class);
-//                    intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent2);
-                break;
-            case R.id.wishlist:
-                Toast.makeText(getApplicationContext(),"Wishlist Clicked", Toast.LENGTH_LONG).show();
-//                    Intent intent3 = new Intent(MainActivity.this, Wishlist.class);
-//                    intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent3);
-                break;
 
-            case R.id.profile:
-                Toast.makeText(getApplicationContext(),"Profile Clicked", Toast.LENGTH_LONG).show();
-//                    Intent intent4 = new Intent(MainActivity.this, Profile.class);
-//                    intent4.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent4);
-                break;
-            default:
-                Toast.makeText(getApplicationContext(),"None", Toast.LENGTH_LONG).show();
-                break;
-        }
-        return false;
-    });
-}
 }
