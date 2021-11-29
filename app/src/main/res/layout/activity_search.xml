@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_marginBottom="30dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+    </Toolbar>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relative"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="70dp">
+
+        <EditText
+            android:id="@+id/searchBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_toStartOf="@+id/btnSearch"
+            android:hint="Type Anything" />
+
+        <ImageView
+            android:id="@+id/btnSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="55dp"
+            android:src="@drawable/ic_baseline_search_24" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btnSearch"
+            android:layout_marginStart="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Category"
+                android:id="@+id/firstCategory"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Second Category"
+                android:id="@+id/secondCategory"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Third Category"
+                android:id="@+id/thirdCategory"
+                android:layout_marginStart="10dp"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See All Categories"
+            android:layout_below="@+id/btnSearch"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtAllCategories"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewSearchResults"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txtAllCategories"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

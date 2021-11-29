@@ -8,9 +8,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
@@ -29,12 +31,28 @@ public class Signin extends AppCompatActivity {
         EditText emailText = findViewById(R.id.editTextTextPersonName6);
         EditText passwordSignIn = findViewById(R.id.editTextTextPassword2);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
+
+
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Signin.this, MainActivity.class);
+                Intent intent   = new Intent(Signin.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -51,6 +69,9 @@ public class Signin extends AppCompatActivity {
                         },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
+                editor.putString("email",emailText.getText().toString());
+                editor.apply();
+
             }
         });
     }
