@@ -19,7 +19,6 @@
         android:layout_height="wrap_content">
 
 
-        <!--ImageVIew to display our Course Image-->
         <ImageView
             android:id="@+id/idIVCourseImage"
             android:scaleType="fitXY"
@@ -32,6 +31,7 @@
             android:contentDescription="@string/app_name"
             android:padding="5dp"
             android:src="@drawable/ic_launcher_background" />
+
 
         <TextView
             android:id="@+id/price"
@@ -47,6 +47,7 @@
 
         <!--Text VIew to display COurse Rating-->
         <!--Image used in present in drawable folder-->
+
         <TextView
             android:id="@+id/titlefrag1"
             android:layout_width="match_parent"

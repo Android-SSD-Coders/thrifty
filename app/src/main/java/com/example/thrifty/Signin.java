@@ -30,6 +30,8 @@ public class Signin extends AppCompatActivity {
         Button btnSignIn  = findViewById(R.id.signin);
         EditText emailText = findViewById(R.id.editTextTextPersonName6);
         EditText passwordSignIn = findViewById(R.id.editTextTextPassword2);
+        EditText username = findViewById(R.id.fullnameT);
+
 
         try {
             // Add these lines to add the AWSApiPlugin plugins
@@ -69,9 +71,10 @@ public class Signin extends AppCompatActivity {
                         },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
+                editor.putString("name",username.getText().toString());
+                editor.apply();
                 editor.putString("email",emailText.getText().toString());
                 editor.apply();
-
             }
         });
     }
