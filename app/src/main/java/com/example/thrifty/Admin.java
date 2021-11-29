@@ -82,6 +82,9 @@ public class Admin extends AppCompatActivity {
             String setcolor = color.getText().toString();
             Log.i("category", setcategory );
 
+         Intent intent = new Intent(Admin.this,MainActivity.class);
+         startActivity(intent);
+
 
 //            Category category1 = Category.builder()
 //                    .name(setcategory)
