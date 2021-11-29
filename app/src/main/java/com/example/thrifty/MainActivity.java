@@ -23,18 +23,23 @@ import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Favorite;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.example.thrifty.adapters.FavoriteAdapter;
 import com.example.thrifty.adapters.NewItemsAdapter;
 import com.example.thrifty.adapters.PopularItemsAdapter;
 import com.example.thrifty.adapters.SuggestedItemsAdapter;
@@ -46,7 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private List<Product> NewProduct = new ArrayList<>();
     private List<Product> PopularProduct = new ArrayList<>();
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity  {
     NewItemsAdapter newItemsAdapter;
     SuggestedItemsAdapter suggestedItemsAdapter;
     PopularItemsAdapter popularItemsAdapter;
+    FavoriteAdapter favoriteAdapter;
 
     public static PinpointManager getPinpointManager(Context applicationContext) {
         return null;
@@ -68,6 +74,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        favMethod();
         MainMenuFragment mainMenuFragment = new MainMenuFragment();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
@@ -94,18 +101,17 @@ public class MainActivity extends AppCompatActivity  {
         initRecyclerViews();
 
 
-
-findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, Admin.class);
-        startActivity(intent);
-    }
-});
-
+        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Admin.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void bottomNav(){
+
+    public void bottomNav() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.homeNav);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
@@ -116,34 +122,34 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
 
         search.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
 
         homeNav.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
 
     }
 
-    private void initRecyclerViews(){
+    private void initRecyclerViews() {
 
         newItemRecView = findViewById(R.id.newItemsRecView);
         suggestedRecView = findViewById(R.id.suggestedRecView);
         popularRecView = findViewById(R.id.popularRecView);
 
 //        newItemRecView.setAdapter(newItemsAdapter);
-        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
         suggestedRecView.setAdapter(suggestedItemsAdapter);
-        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
         popularRecView.setAdapter(popularItemsAdapter);
-        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
-        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct , MainActivity.this));
+        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct, MainActivity.this));
         Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -154,7 +160,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         });
 
 
-        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct , MainActivity.this));
+        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct, MainActivity.this));
         Handler popularhandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -164,7 +170,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             }
         });
 
-        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct , MainActivity.this));
+        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct, MainActivity.this));
         Handler suggesthandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -178,12 +184,11 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
                 ModelQuery.list(Product.class),
                 response -> {
                     for (Product todo : response.getData()) {
-                      NewProduct.add(todo);
+                        NewProduct.add(todo);
                     }
                     handler.sendEmptyMessage(1);
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
-
 
 
         Amplify.API.query(
@@ -216,9 +221,43 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         stopButton.setVisibility(View.GONE);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("hebaalmomani1998@gmail.com")){
+        if (email1.equals("na25wal@yahoo.com")) {
             stopButton.setVisibility(View.VISIBLE);
         }
     }
 
+    public void favMethod() {
+        Log.i("Favorie","llllllllllllllllll");
+        Button favButtons = findViewById(R.id.favButton);
+        favButtons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView name = findViewById(R.id.titlefrag1);
+                TextView category = findViewById(R.id.categoryfrag);
+//                TextView email = findViewById(R.id.editTextTextPersonName6);
+
+                String nameFav = name.getText().toString();
+                String categoryFav = category.getText().toString();
+//                String emailFav = email.getText().toString();
+
+                Favorite favorite = new Favorite.Builder()
+                        .titleFav(nameFav)
+                        .imageFav("categoryFav")
+                        .priceFav("15")
+                        .sizeFav("15")
+                        .categoryFav(categoryFav)
+                        .userId("emailFav")
+                        .build();
+                Log.i("Favorie","kkkkkkkkkkkkkkkkkkk"+favorite);
+
+                Amplify.API.mutate(
+                        ModelMutation.create(favorite),
+                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+                );
+
+                Toast.makeText(getApplicationContext(), "add to fav", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

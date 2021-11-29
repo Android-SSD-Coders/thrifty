@@ -33,6 +33,7 @@ public final class Product implements Model {
   public static final QueryField SIZE = field("Product", "size");
   public static final QueryField COLOR = field("Product", "color");
   public static final QueryField CATEGORY_ID = field("Product", "categoryID");
+  public static final QueryField IMAGE = field("Product", "image");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String description;
@@ -40,6 +41,7 @@ public final class Product implements Model {
   private final @ModelField(targetType="String", isRequired = true) String size;
   private final @ModelField(targetType="String", isRequired = true) String color;
   private final @ModelField(targetType="ID") String categoryID;
+  private final @ModelField(targetType="String", isRequired = true) String image;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -70,6 +72,10 @@ public final class Product implements Model {
       return categoryID;
   }
   
+  public String getImage() {
+      return image;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -78,7 +84,7 @@ public final class Product implements Model {
       return updatedAt;
   }
   
-  private Product(String id, String title, String description, String price, String size, String color, String categoryID) {
+  private Product(String id, String title, String description, String price, String size, String color, String categoryID, String image) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -86,6 +92,7 @@ public final class Product implements Model {
     this.size = size;
     this.color = color;
     this.categoryID = categoryID;
+    this.image = image;
   }
   
   @Override
@@ -103,6 +110,7 @@ public final class Product implements Model {
               ObjectsCompat.equals(getSize(), product.getSize()) &&
               ObjectsCompat.equals(getColor(), product.getColor()) &&
               ObjectsCompat.equals(getCategoryId(), product.getCategoryId()) &&
+              ObjectsCompat.equals(getImage(), product.getImage()) &&
               ObjectsCompat.equals(getCreatedAt(), product.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), product.getUpdatedAt());
       }
@@ -118,6 +126,7 @@ public final class Product implements Model {
       .append(getSize())
       .append(getColor())
       .append(getCategoryId())
+      .append(getImage())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -135,6 +144,7 @@ public final class Product implements Model {
       .append("size=" + String.valueOf(getSize()) + ", ")
       .append("color=" + String.valueOf(getColor()) + ", ")
       .append("categoryID=" + String.valueOf(getCategoryId()) + ", ")
+      .append("image=" + String.valueOf(getImage()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -161,6 +171,7 @@ public final class Product implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -172,7 +183,8 @@ public final class Product implements Model {
       price,
       size,
       color,
-      categoryID);
+      categoryID,
+      image);
   }
   public interface TitleStep {
     DescriptionStep title(String title);
@@ -195,7 +207,12 @@ public final class Product implements Model {
   
 
   public interface ColorStep {
-    BuildStep color(String color);
+    ImageStep color(String color);
+  }
+  
+
+  public interface ImageStep {
+    BuildStep image(String image);
   }
   
 
@@ -206,13 +223,14 @@ public final class Product implements Model {
   }
   
 
-  public static class Builder implements TitleStep, DescriptionStep, PriceStep, SizeStep, ColorStep, BuildStep {
+  public static class Builder implements TitleStep, DescriptionStep, PriceStep, SizeStep, ColorStep, ImageStep, BuildStep {
     private String id;
     private String title;
     private String description;
     private String price;
     private String size;
     private String color;
+    private String image;
     private String categoryID;
     @Override
      public Product build() {
@@ -225,7 +243,8 @@ public final class Product implements Model {
           price,
           size,
           color,
-          categoryID);
+          categoryID,
+          image);
     }
     
     @Override
@@ -257,9 +276,16 @@ public final class Product implements Model {
     }
     
     @Override
-     public BuildStep color(String color) {
+     public ImageStep color(String color) {
         Objects.requireNonNull(color);
         this.color = color;
+        return this;
+    }
+    
+    @Override
+     public BuildStep image(String image) {
+        Objects.requireNonNull(image);
+        this.image = image;
         return this;
     }
     
@@ -281,13 +307,14 @@ public final class Product implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String categoryId) {
+    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String categoryId, String image) {
       super.id(id);
       super.title(title)
         .description(description)
         .price(price)
         .size(size)
         .color(color)
+        .image(image)
         .categoryId(categoryId);
     }
     
@@ -314,6 +341,11 @@ public final class Product implements Model {
     @Override
      public CopyOfBuilder color(String color) {
       return (CopyOfBuilder) super.color(color);
+    }
+    
+    @Override
+     public CopyOfBuilder image(String image) {
+      return (CopyOfBuilder) super.image(image);
     }
     
     @Override

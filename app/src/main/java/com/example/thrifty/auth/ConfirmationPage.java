@@ -1,4 +1,4 @@
-package com.example.thrifty;
+package com.example.thrifty.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toolbar;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.example.thrifty.MainActivity;
+import com.example.thrifty.R;
 
 public class ConfirmationPage extends AppCompatActivity {
 
@@ -49,7 +48,7 @@ public class ConfirmationPage extends AppCompatActivity {
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
 
-                Intent intent = new Intent(ConfirmationPage.this,MainActivity.class);
+                Intent intent = new Intent(ConfirmationPage.this, MainActivity.class);
                 startActivity(intent);
             }
         });
