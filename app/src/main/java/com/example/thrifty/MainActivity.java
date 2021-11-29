@@ -225,39 +225,5 @@ public class MainActivity extends AppCompatActivity {
             stopButton.setVisibility(View.VISIBLE);
         }
     }
-
-    public void favMethod() {
-        Log.i("Favorie","llllllllllllllllll");
-        Button favButtons = findViewById(R.id.favButton);
-        favButtons.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TextView name = findViewById(R.id.titlefrag1);
-                TextView category = findViewById(R.id.categoryfrag);
-//                TextView email = findViewById(R.id.editTextTextPersonName6);
-
-                String nameFav = name.getText().toString();
-                String categoryFav = category.getText().toString();
-//                String emailFav = email.getText().toString();
-
-                Favorite favorite = new Favorite.Builder()
-                        .titleFav(nameFav)
-                        .imageFav("categoryFav")
-                        .priceFav("15")
-                        .sizeFav("15")
-                        .categoryFav(categoryFav)
-                        .userId("emailFav")
-                        .build();
-                Log.i("Favorie","kkkkkkkkkkkkkkkkkkk"+favorite);
-
-                Amplify.API.mutate(
-                        ModelMutation.create(favorite),
-                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
-                );
-
-                Toast.makeText(getApplicationContext(), "add to fav", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+    
 }
