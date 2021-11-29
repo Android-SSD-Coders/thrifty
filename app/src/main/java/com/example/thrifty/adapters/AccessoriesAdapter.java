@@ -7,44 +7,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.datastore.generated.model.Product;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.example.thrifty.Accessories;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.R;
 
+import java.util.List;
 
+public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.CategorizedProductHolder> {
+    List<Product> products;
 
-
-public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
-    List<Product> products = new ArrayList<>();
-
-    public NewItemsAdapter(List<Product> products, MainActivity mainActivity){
+    public AccessoriesAdapter(List<Product> products, Accessories accessories){
         this.products = products;
     }
-
-
-    @NonNull
     @Override
-    public NewItemsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategorizedProductHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent , false);
-        return  new NewItemsAdapter.NewItemsHolder(view);
+        return  new AccessoriesAdapter.CategorizedProductHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(@NonNull NewItemsHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(CategorizedProductHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.product = products.get(position);
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
 
         title.setText(holder.product.getTitle());
         category.setText(holder.product.getCategoryId());
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,17 +47,15 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
             }
         });
     }
-
-
     @Override
     public int getItemCount() {
         return products.size();
     }
 
-    public static class NewItemsHolder extends RecyclerView.ViewHolder{
+    public static class CategorizedProductHolder extends RecyclerView.ViewHolder{
         public  Product product;
         public View itemView;
-        public NewItemsHolder(@NonNull View itemView) {
+        public CategorizedProductHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
         }

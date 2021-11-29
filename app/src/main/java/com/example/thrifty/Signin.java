@@ -14,20 +14,30 @@ import android.widget.EditText;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class Signin extends AppCompatActivity {
     public static final String TAG = "SignIn";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        Button btnSignIn  = findViewById(R.id.signin);
+        configure();
+
+        Button btnSignIn = findViewById(R.id.signin);
         EditText emailText = findViewById(R.id.editTextTextPersonName6);
         EditText passwordSignIn = findViewById(R.id.editTextTextPassword2);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
@@ -51,7 +61,24 @@ public class Signin extends AppCompatActivity {
                         },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
+                editor.putString("email", emailText.getText().toString());
+                editor.apply();
             }
         });
+    }
+
+    public void configure() {
+        try {
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+
     }
 }

@@ -19,32 +19,32 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Category type in your schema. */
+/** This is an auto generated class representing the User type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Categories", authRules = {
+@ModelConfig(pluralName = "Users", authRules = {
   @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-public final class Category implements Model {
+public final class User implements Model {
   public static final QueryField ID = field("id");
-  public static final QueryField NAME = field("name");
+  public static final QueryField EMAIL = field("email");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="Product") @HasMany(associatedWith = "categoryID", type = Product.class) List<Product> Products = null;
+  private final @ModelField(targetType="String", isRequired = true) String email;
+  private final @ModelField(targetType="Favorite") @HasMany(associatedWith = "userID", type = Favorite.class) List<Favorite> Favorite = null;
   public String getId() {
       return id;
   }
   
-  public String getName() {
-      return name;
+  public String getEmail() {
+      return email;
   }
   
-  public List<Product> getProducts() {
-      return Products;
+  public List<Favorite> getFavorite() {
+      return Favorite;
   }
   
-  private Category(String id, String name) {
+  private User(String id, String email) {
     this.id = id;
-    this.name = name;
+    this.email = email;
   }
   
   @Override
@@ -54,9 +54,9 @@ public final class Category implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Category category = (Category) obj;
-      return ObjectsCompat.equals(getId(), category.getId()) &&
-              ObjectsCompat.equals(getName(), category.getName());
+      User user = (User) obj;
+      return ObjectsCompat.equals(getId(), user.getId()) &&
+              ObjectsCompat.equals(getEmail(), user.getEmail());
       }
   }
   
@@ -64,7 +64,7 @@ public final class Category implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getName())
+      .append(getEmail())
       .toString()
       .hashCode();
   }
@@ -72,14 +72,14 @@ public final class Category implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Category {")
+      .append("User {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("name=" + String.valueOf(getName()))
+      .append("email=" + String.valueOf(getEmail()))
       .append("}")
       .toString();
   }
   
-  public static NameStep builder() {
+  public static EmailStep builder() {
       return new Builder();
   }
   
@@ -92,7 +92,7 @@ public final class Category implements Model {
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
-  public static Category justId(String id) {
+  public static User justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
     } catch (Exception exception) {
@@ -102,7 +102,7 @@ public final class Category implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
-    return new Category(
+    return new User(
       id,
       null
     );
@@ -110,35 +110,35 @@ public final class Category implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      name);
+      email);
   }
-  public interface NameStep {
-    BuildStep name(String name);
+  public interface EmailStep {
+    BuildStep email(String email);
   }
   
 
   public interface BuildStep {
-    Category build();
+    User build();
     BuildStep id(String id) throws IllegalArgumentException;
   }
   
 
-  public static class Builder implements NameStep, BuildStep {
+  public static class Builder implements EmailStep, BuildStep {
     private String id;
-    private String name;
+    private String email;
     @Override
-     public Category build() {
+     public User build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Category(
+        return new User(
           id,
-          name);
+          email);
     }
     
     @Override
-     public BuildStep name(String name) {
-        Objects.requireNonNull(name);
-        this.name = name;
+     public BuildStep email(String email) {
+        Objects.requireNonNull(email);
+        this.email = email;
         return this;
     }
     
@@ -165,14 +165,14 @@ public final class Category implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name) {
+    private CopyOfBuilder(String id, String email) {
       super.id(id);
-      super.name(name);
+      super.email(email);
     }
     
     @Override
-     public CopyOfBuilder name(String name) {
-      return (CopyOfBuilder) super.name(name);
+     public CopyOfBuilder email(String email) {
+      return (CopyOfBuilder) super.email(email);
     }
   }
   
