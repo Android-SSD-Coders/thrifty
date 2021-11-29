@@ -103,6 +103,7 @@ public class Admin extends AppCompatActivity {
                     .price(setprice)
                     .size(setsize)
                     .color(setcolor)
+                    .image("")
                     .categoryId(setcategory)
                     .build();
 

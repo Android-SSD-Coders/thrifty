@@ -134,18 +134,12 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
     }
 
     private void initRecyclerViews(){
-
         newItemRecView = findViewById(R.id.newItemsRecView);
         suggestedRecView = findViewById(R.id.suggestedRecView);
         popularRecView = findViewById(R.id.popularRecView);
 
-//        newItemRecView.setAdapter(newItemsAdapter);
         newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
-
-        suggestedRecView.setAdapter(suggestedItemsAdapter);
         suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
-
-        popularRecView.setAdapter(popularItemsAdapter);
         popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
 
         newItemRecView.setAdapter(new NewItemsAdapter(NewProduct , MainActivity.this));
@@ -211,6 +205,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
                     suggesthandler.sendEmptyMessage(1);
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
+
     }
 
 
