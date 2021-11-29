@@ -78,11 +78,11 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         try {
-            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException error) {
@@ -112,7 +112,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         BottomNavigationItemView search = findViewById(R.id.search);
 //        BottomNavigationItemView cart = findViewById(R.id.cart);
 //        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
-//        BottomNavigationItemView profile = findViewById(R.id.profile);
+        BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
@@ -126,6 +126,11 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             startActivity(intent);
         });
 
+        profile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 
     private void initRecyclerViews(){
