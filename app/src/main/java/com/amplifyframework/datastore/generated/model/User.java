@@ -19,24 +19,24 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Category type in your schema. */
+/** This is an auto generated class representing the User type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Categories", authRules = {
+@ModelConfig(pluralName = "Users", authRules = {
   @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-public final class Category implements Model {
-  public static final QueryField ID = field("Category", "id");
-  public static final QueryField NAME = field("Category", "name");
+public final class User implements Model {
+  public static final QueryField ID = field("User", "id");
+  public static final QueryField EMAIL = field("User", "email");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="String", isRequired = true) String email;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
   
-  public String getName() {
-      return name;
+  public String getEmail() {
+      return email;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -47,9 +47,9 @@ public final class Category implements Model {
       return updatedAt;
   }
   
-  private Category(String id, String name) {
+  private User(String id, String email) {
     this.id = id;
-    this.name = name;
+    this.email = email;
   }
   
   @Override
@@ -59,11 +59,11 @@ public final class Category implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Category category = (Category) obj;
-      return ObjectsCompat.equals(getId(), category.getId()) &&
-              ObjectsCompat.equals(getName(), category.getName()) &&
-              ObjectsCompat.equals(getCreatedAt(), category.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), category.getUpdatedAt());
+      User user = (User) obj;
+      return ObjectsCompat.equals(getId(), user.getId()) &&
+              ObjectsCompat.equals(getEmail(), user.getEmail()) &&
+              ObjectsCompat.equals(getCreatedAt(), user.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), user.getUpdatedAt());
       }
   }
   
@@ -71,7 +71,7 @@ public final class Category implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getName())
+      .append(getEmail())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -81,16 +81,16 @@ public final class Category implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Category {")
+      .append("User {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("name=" + String.valueOf(getName()) + ", ")
+      .append("email=" + String.valueOf(getEmail()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static NameStep builder() {
+  public static EmailStep builder() {
       return new Builder();
   }
   
@@ -102,8 +102,8 @@ public final class Category implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static Category justId(String id) {
-    return new Category(
+  public static User justId(String id) {
+    return new User(
       id,
       null
     );
@@ -111,35 +111,35 @@ public final class Category implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      name);
+      email);
   }
-  public interface NameStep {
-    BuildStep name(String name);
+  public interface EmailStep {
+    BuildStep email(String email);
   }
   
 
   public interface BuildStep {
-    Category build();
+    User build();
     BuildStep id(String id);
   }
   
 
-  public static class Builder implements NameStep, BuildStep {
+  public static class Builder implements EmailStep, BuildStep {
     private String id;
-    private String name;
+    private String email;
     @Override
-     public Category build() {
+     public User build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Category(
+        return new User(
           id,
-          name);
+          email);
     }
     
     @Override
-     public BuildStep name(String name) {
-        Objects.requireNonNull(name);
-        this.name = name;
+     public BuildStep email(String email) {
+        Objects.requireNonNull(email);
+        this.email = email;
         return this;
     }
     
@@ -155,14 +155,14 @@ public final class Category implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name) {
+    private CopyOfBuilder(String id, String email) {
       super.id(id);
-      super.name(name);
+      super.email(email);
     }
     
     @Override
-     public CopyOfBuilder name(String name) {
-      return (CopyOfBuilder) super.name(name);
+     public CopyOfBuilder email(String email) {
+      return (CopyOfBuilder) super.email(email);
     }
   }
   
