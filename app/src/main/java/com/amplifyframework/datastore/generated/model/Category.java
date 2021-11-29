@@ -9,7 +9,10 @@ import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
+import com.amplifyframework.core.model.AuthStrategy;
 import com.amplifyframework.core.model.Model;
+import com.amplifyframework.core.model.ModelOperation;
+import com.amplifyframework.core.model.annotations.AuthRule;
 import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
@@ -19,13 +22,15 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Category type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Categories")
+@ModelConfig(pluralName = "Categories", authRules = {
+  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+})
 public final class Category implements Model {
   public static final QueryField ID = field("Category", "id");
   public static final QueryField NAME = field("Category", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="Product") @HasMany(associatedWith = "category", type = Product.class) List<Product> products = null;
+  private final @ModelField(targetType="Product") @HasMany(associatedWith = "categoryID", type = Product.class) List<Product> Products = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -37,7 +42,7 @@ public final class Category implements Model {
   }
   
   public List<Product> getProducts() {
-      return products;
+      return Products;
   }
   
   public Temporal.DateTime getCreatedAt() {

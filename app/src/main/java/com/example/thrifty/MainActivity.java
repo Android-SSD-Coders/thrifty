@@ -2,14 +2,18 @@ package com.example.thrifty;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,6 +21,7 @@ import android.widget.Button;
 
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -33,12 +38,22 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.example.thrifty.adapters.NewItemsAdapter;
+import com.example.thrifty.adapters.PopularItemsAdapter;
+import com.example.thrifty.adapters.SuggestedItemsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
     private static PinpointManager pinpointManager;
     private static final String TAG = "MainActivity";
+
+    RecyclerView newItemRecView, suggestedRecView, popularRecView;
+    NewItemsAdapter newItemsAdapter;
+    SuggestedItemsAdapter suggestedItemsAdapter;
+    PopularItemsAdapter popularItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
         createNotificationChannel();
+        bottomNav();
+        initRecyclerViews();
+
+
         try {
             Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
@@ -57,14 +76,74 @@ public class MainActivity extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
-findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+
+        Button admin = findViewById(R.id.admin);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Admin.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    private void initRecyclerViews() {
+        newItemRecView = findViewById(R.id.newItemsRecView);
+        suggestedRecView = findViewById(R.id.suggestedRecView);
+        popularRecView = findViewById(R.id.popularRecView);
+
+        newItemRecView.setAdapter(newItemsAdapter);
+        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+
+        suggestedRecView.setAdapter(suggestedItemsAdapter);
+        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+
+        popularRecView.setAdapter(popularItemsAdapter);
+        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+
+    }
+
+    private void bottomNav() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.homeNav);
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+//        BottomNavigationItemView cart = findViewById(R.id.cart);
+//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+//        BottomNavigationItemView profile = findViewById(R.id.profile);
+
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+    }
+
     @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, Signup.class);
-        startActivity(intent);
+    protected void onStart() {
+        super.onStart();
     }
-});
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Button stopButton = (Button) findViewById(R.id.admin);
+        stopButton.setVisibility(View.GONE);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        String email1 = sharedPreferences.getString("email", "Your email");
+        if (email1.equals("hebaalmomani1998@gmail.com")){
+            stopButton.setVisibility(View.VISIBLE);
+        }
     }
+
     public static PinpointManager getPinpointManager(Context applicationContext) {
         if (pinpointManager == null) {
             final AWSConfiguration awsConfig = new AWSConfiguration(applicationContext);
