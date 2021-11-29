@@ -25,6 +25,7 @@ import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class Admin extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +104,7 @@ public class Admin extends AppCompatActivity {
                     .price(setprice)
                     .size(setsize)
                     .color(setcolor)
+                    .image("lol")
                     .categoryId(setcategory)
                     .build();
 

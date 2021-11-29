@@ -1,4 +1,4 @@
-package com.example.thrifty;
+package com.example.thrifty.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
@@ -20,6 +18,8 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.example.thrifty.MainActivity;
+import com.example.thrifty.R;
 
 public class Signin extends AppCompatActivity {
     public static final String TAG = "SignIn";

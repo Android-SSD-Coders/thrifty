@@ -1,4 +1,4 @@
-package com.example.thrifty;
+package com.example.thrifty.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +18,8 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.example.thrifty.MainActivity;
+import com.example.thrifty.R;
 
 public class Signup extends AppCompatActivity {
     public static final String TAG = "SignUp";
