@@ -4,15 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.amplifyframework.datastore.generated.model.Product;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nex3z.notificationbadge.NotificationBadge;
@@ -24,10 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductsActivity extends AppCompatActivity implements ProductListener, CartListener {
-    ProductAdapter adapter;
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.recycler_product)
-    RecyclerView recycler_product;
+    @BindView((R.id.recycler_product))
+    RecyclerView recyclerView;
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.productLayout)
     RelativeLayout productLayout;
@@ -41,56 +45,66 @@ public class ProductsActivity extends AppCompatActivity implements ProductListen
     ProductListener productListener;
     CartListener cartListener;
 
+    private ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
+//        listView = findViewById(R.id.listView);
+
         init();
-        loadProductFromFirebase();
-    }
 
-    private void loadProductFromFirebase() {
+
+
+        DatabaseReference database = FirebaseDatabase.getInstance("https://thriftycart-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("Drink");
         List<ProductModel> productModels = new ArrayList<>();
-        FirebaseDatabase.getInstance()
-                .getReference("Drink")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot productSnapshot : dataSnapshot.getChildren()) {
-                                ProductModel productModel = productSnapshot.getValue(ProductModel.class);
-                                productModel.setKey(productSnapshot.getKey());
-                                productModels.add(productModel);
-                            }
-                            productListener.onProductLoadSuccess(productModels);
-                        } else
-                            productListener.onProductLoadFailed("can't find products");
-                    }
+        Log.i("Reference","Reference===>"+database);
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        productListener.onProductLoadFailed(databaseError.getMessage());
+//        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.i("Zeft","zafateeeeeeeeeeet"+recyclerView);
+
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot productSnapshot:dataSnapshot.getChildren()) {
+                        ProductModel productModel = productSnapshot.getValue(ProductModel.class);
+                        Log.i("Heba","product one to add 5555555"+productModel);
+                        productModel.setKey(productSnapshot.getKey());
+                        Log.i("Jamal","product one to add 5555555"+productModel);
+                        productModels.add(productModel);
+                        Log.i("Khair","product one to add 9999999999"+productModel);
                     }
-                });
+                    productListener.onProductLoadSuccess(productModels);
+                } else
+                Log.i("Nawal","product one to add 9999999999"+productModels);
+                productListener.onProductLoadFailed("can't find products");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                productListener.onProductLoadFailed(databaseError.getMessage());
+            }
+        });
+
     }
 
     private void init() {
         ButterKnife.bind(this);
         productListener = this;
         cartListener = this;
-        recycler_product.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        recycler_product.setLayoutManager(gridLayoutManager);
-        recycler_product.addItemDecoration(new SpaceItemDecoration());
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(new SpaceItemDecoration());
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onProductLoadSuccess(List<ProductModel> productModelList) {
-        ProductAdapter adapter = new ProductAdapter(this, productModelList);
-        recycler_product.setAdapter(adapter);
+    public void onProductLoadSuccess(List<ProductModel> productModels) {
+        ProductAdapter adapter = new ProductAdapter(this, productModels);
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 

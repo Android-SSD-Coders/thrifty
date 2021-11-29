@@ -59,7 +59,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 .into(holder.imageView);
         holder.txtPrice.setText(new StringBuilder("$").append(productModelList.get(position).getPrice()));
         holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getName()));
-
     }
 
     @Override
