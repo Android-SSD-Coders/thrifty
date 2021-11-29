@@ -8,4 +8,8 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="graylight">#D3D3D3</color>
+    <color name="silver">#eeeeee</color>
+    <color name="pink">#ff5964</color>
+    <color name="lapis_lazuli">#38618c</color>
 </resources>

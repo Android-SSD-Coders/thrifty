@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         BottomNavigationItemView search = findViewById(R.id.search);
 //        BottomNavigationItemView cart = findViewById(R.id.cart);
 //        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
-//        BottomNavigationItemView profile = findViewById(R.id.profile);
+        BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
@@ -48,6 +48,12 @@ public class SearchActivity extends AppCompatActivity {
 
         homeNav.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        profile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
