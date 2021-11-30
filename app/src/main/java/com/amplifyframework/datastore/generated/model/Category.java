@@ -1,5 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -25,10 +26,11 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
   @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Category implements Model {
-  public static final QueryField ID = field("id");
-  public static final QueryField NAME = field("name");
+  public static final QueryField ID = field("Category", "id");
+  public static final QueryField NAME = field("Category", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="Product") @HasMany(associatedWith = "categoryID", type = Product.class) List<Product> Products = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -41,7 +43,8 @@ public final class Category implements Model {
   
   public List<Product> getProducts() {
       return Products;
-
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -64,7 +67,9 @@ public final class Category implements Model {
       } else {
       Category category = (Category) obj;
       return ObjectsCompat.equals(getId(), category.getId()) &&
-              ObjectsCompat.equals(getName(), category.getName());
+              ObjectsCompat.equals(getName(), category.getName()) &&
+              ObjectsCompat.equals(getCreatedAt(), category.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), category.getUpdatedAt());
       }
   }
   
@@ -73,6 +78,8 @@ public final class Category implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getName())
+      .append(getCreatedAt())
+      .append(getUpdatedAt())
       .toString()
       .hashCode();
   }
@@ -82,7 +89,9 @@ public final class Category implements Model {
     return new StringBuilder()
       .append("Category {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("name=" + String.valueOf(getName()))
+      .append("name=" + String.valueOf(getName()) + ", ")
+      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -98,18 +107,8 @@ public final class Category implements Model {
    * in a relationship.
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
-   * @throws IllegalArgumentException Checks that ID is in the proper format
    */
   public static Category justId(String id) {
-    try {
-      UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
-    } catch (Exception exception) {
-      throw new IllegalArgumentException(
-              "Model IDs must be unique in the format of UUID. This method is for creating instances " +
-              "of an existing object with only its ID field for sending as a mutation parameter. When " +
-              "creating a new object, use the standard builder method and leave the ID field blank."
-      );
-    }
     return new Category(
       id,
       null
@@ -127,7 +126,7 @@ public final class Category implements Model {
 
   public interface BuildStep {
     Category build();
-    BuildStep id(String id) throws IllegalArgumentException;
+    BuildStep id(String id);
   }
   
 
@@ -151,22 +150,11 @@ public final class Category implements Model {
     }
     
     /** 
-     * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
-     * This should only be set when referring to an already existing object.
      * @param id id
      * @return Current Builder instance, for fluent method chaining
-     * @throws IllegalArgumentException Checks that ID is in the proper format
      */
-    public BuildStep id(String id) throws IllegalArgumentException {
+    public BuildStep id(String id) {
         this.id = id;
-        
-        try {
-            UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
-        } catch (Exception exception) {
-          throw new IllegalArgumentException("Model IDs must be unique in the format of UUID.",
-                    exception);
-        }
-        
         return this;
     }
   }

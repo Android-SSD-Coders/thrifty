@@ -63,16 +63,8 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    private List<Product> NewProduct = new ArrayList<>();
-    private List<Product> PopularProduct = new ArrayList<>();
-    private List<Product> SuggestProduct = new ArrayList<>();
     private List<Product> categorizedProducts = new ArrayList<>();
 
-
-    RecyclerView newItemRecView, suggestedRecView, popularRecView;
-    NewItemsAdapter newItemsAdapter;
-    SuggestedItemsAdapter suggestedItemsAdapter;
-    PopularItemsAdapter popularItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +99,13 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, Admin.class);
-        startActivity(intent);
-    }
-});
+        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Admin.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -190,7 +182,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
                 ModelQuery.list(Product.class),
                 response -> {
                     for (Product todo : response.getData()) {
-                      NewProduct.add(todo);
+                        NewProduct.add(todo);
                     }
                     handler.sendEmptyMessage(1);
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)

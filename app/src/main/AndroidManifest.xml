@@ -12,9 +12,13 @@
         <activity
             android:name=".Accessories"
             android:exported="false" />
-<activity
+        <activity
             android:name=".Profile"
             android:exported="true" />
+
+        <activity
+            android:name=".ProductView"
+            android:exported="false" />
 
         <activity
             android:name=".Belts"
