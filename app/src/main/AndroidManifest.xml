@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".Signin"
+            android:exported="false" />
+        <activity
             android:name=".Accessories"
             android:exported="false" />
         <activity
@@ -49,7 +52,7 @@
             android:name=".Signup"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Search"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
