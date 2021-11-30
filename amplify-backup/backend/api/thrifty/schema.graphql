@@ -29,6 +29,5 @@ type Product @model @auth(rules: [{allow: private}]) @key(name: "byCategory", fi
   color: String!
   categoryID: ID
   image: String!
-  tag: String!
 }
  

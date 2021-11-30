@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -16,6 +17,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.squareup.picasso.Picasso;
 
 public class ProductView extends AppCompatActivity {
 
@@ -47,6 +49,7 @@ public class ProductView extends AppCompatActivity {
         String price = intent.getStringExtra("price");
         String category = intent.getStringExtra("category");
 
+
         TextView textView = findViewById(R.id.txtTitle);
         TextView priceTxt = findViewById(R.id.txtPrice);
         TextView categoryTxt = findViewById(R.id.category);
@@ -56,5 +59,8 @@ public class ProductView extends AppCompatActivity {
         categoryTxt.setText(category);
 
 
+        String url = intent.getExtras().getString("image");
+        ImageView image = findViewById(R.id.itemImage);
+        Picasso.get().load(url).into(image);
     }
 }

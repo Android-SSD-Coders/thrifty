@@ -23,10 +23,10 @@
         android:text="add products"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.926" />
+        app:layout_constraintVertical_bias="0.822" />
 
     <TextView
         android:id="@+id/productname"
@@ -38,7 +38,7 @@
         app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.113" />
 
     <TextView
         android:id="@+id/description"
@@ -52,6 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/productname"
         app:layout_constraintVertical_bias="0.118" />
 
+
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
@@ -62,8 +63,7 @@
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.158" />
-
+        app:layout_constraintVertical_bias="0.113" />
 
     <TextView
         android:id="@+id/category"
@@ -75,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.27" />
 
     <EditText
         android:id="@+id/nametext"
@@ -89,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <EditText
         android:id="@+id/descriptiontext"
@@ -105,6 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nametext"
         app:layout_constraintVertical_bias="0.102" />
 
+
     <EditText
         android:id="@+id/pricetext"
         android:layout_width="wrap_content"
@@ -117,8 +118,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptiontext"
-        app:layout_constraintVertical_bias="0.166" />
-
+        app:layout_constraintVertical_bias="0.098" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -130,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintVertical_bias="0.456" />
 
     <TextView
         android:id="@+id/size"
@@ -142,7 +142,7 @@
         app:layout_constraintHorizontal_bias="0.199"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.414" />
 
     <Spinner
         android:id="@+id/sizespinner"
@@ -154,7 +154,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.574" />
 
     <TextView
         android:id="@+id/color"
@@ -163,24 +163,46 @@
         android:text="color"
         app:layout_constraintBottom_toTopOf="@+id/addproduct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizespinner"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.108" />
+
 
     <EditText
         android:id="@+id/colortext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="color"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizespinner"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintVertical_bias="0.157" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload image"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toStartOf="@+id/addproduct"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colortext"
+        app:layout_constraintVertical_bias="0.342" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

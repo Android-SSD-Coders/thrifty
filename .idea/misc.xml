@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_admin.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_kids_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_main.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_men_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_product_view.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/activity_watches.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/card_layout.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/fragment_main_menu.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/STUDENT/ASAC/project/thrifty/app/src/main/res/layout/fragment_product.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/drawable-v24/ic_arrow_left.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/layout/activity_accessories.xml" value="0.1859375" />

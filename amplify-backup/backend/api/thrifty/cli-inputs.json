@@ -12,7 +12,7 @@
       }
     },
     "apiName": "thrifty",
-    "gqlSchemaPath": "/tmp/amplify-74fb24a4-6bf4-48c0-8949-e8d7be787187/amplify/backend/api/thrifty/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-b38aed8f-cc0e-48c1-ab26-b93ee968bf10/amplify/backend/api/thrifty/schema.graphql",
     "additionalAuthTypes": [
       {
         "mode": "API_KEY",

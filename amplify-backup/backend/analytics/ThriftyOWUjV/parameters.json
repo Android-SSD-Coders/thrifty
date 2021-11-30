@@ -1,0 +1,22 @@
+{
+    "appName": "ThriftyOWUjV",
+    "roleName": "pinpointLambdaRolee733af87",
+    "cloudformationPolicyName": "cloudformationPolicye733af87",
+    "cloudWatchPolicyName": "cloudWatchPolicye733af87",
+    "pinpointPolicyName": "pinpointPolicye733af87",
+    "authPolicyName": "pinpoint_amplify_e733af87",
+    "unauthPolicyName": "pinpoint_amplify_e733af87",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "appId": "f06bd624184f4c90bc7556672ddd9619"
+}
