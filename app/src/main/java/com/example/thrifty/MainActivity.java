@@ -22,16 +22,20 @@ import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Favorite;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.thrifty.adapters.NewItemsAdapter;
@@ -102,6 +106,48 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
     }
 });
 
+
+
+
+        
+        Button btn = findViewById(R.id.button2);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView title = findViewById(R.id.titlefrag1);
+                TextView category = findViewById(R.id.categoryfrag);
+//                TextView price = findViewById(R.id.price);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                String email = sharedPreferences.getString("email","email");
+
+                Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
+                String name = title.getText().toString();
+                String cat = category.getText().toString();
+
+                Favorite favorite = new Favorite.Builder()
+                        .titleFav(name)
+                        .imageFav("categoryFav")
+                        .priceFav("15")
+                        .sizeFav("15")
+                        .categoryFav(cat)
+                        .userId(email)
+                        .build();
+                Amplify.API.mutate(
+                        ModelMutation.create(favorite),
+                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+
+                );
+            }
+        });
+
+
+
+
+
+
+
+
     }
 
     public void bottomNav(){
@@ -132,7 +178,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         });
 
         wishlist.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), FavoriteActivity.class);
+            Intent intent = new Intent(getApplicationContext(), FavActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });

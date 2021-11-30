@@ -18,59 +18,48 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Favorite;
-import com.example.thrifty.ProductView;
-import com.example.thrifty.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter
-        .FavoriteHolder
-> {
-    List<Favorite> favoriteList
-            = new ArrayList<>();
+import com.example.thrifty.FavoriteActivity;
+import com.example.thrifty.R;
 
-    public FavoriteAdapter(List<Favorite> favoriteList) {
-        this.favoriteList= favoriteList;
+
+public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder> {
+    List<Favorite> favoriteList = new ArrayList<>();
+
+    public FavoriteAdapter(List<Favorite> products) {
+        this.favoriteList = favoriteList;
     }
 
 
     @NonNull
     @Override
-    public FavoriteAdapter
-            .FavoriteHolder
- onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new FavoriteAdapter
-                .FavoriteHolder
-(view);
+        return new FavoriteAdapter.FavoriteHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoriteAdapter
-            .FavoriteHolder
- holder, @SuppressLint("RecyclerView") int position) {
-        holder.favorite = favoriteList
-                .get(position);
-        TextView title = holder.itemView.findViewById(R.id.titlefrag1);
-        TextView category = holder.itemView.findViewById(R.id.categoryfrag);
-        TextView price = holder.itemView.findViewById(R.id.price);
-
-        title.setText(holder.favorite.getTitleFav());
-        category.setText(holder.favorite.getCategoryFav());
-        price.setText(holder.favorite.getPriceFav());
+    public void onBindViewHolder(@NonNull FavoriteHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Button btn = holder.itemView.findViewById(R.id.button2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-                String email = sharedPreferences.getString("email", "email");
+                String email = sharedPreferences.getString("email","email");
 
-                Log.i("emaill", "Khair " + email);
+                holder.favorite = favoriteList.get(position);
+                TextView title = holder.itemView.findViewById(R.id.titlefrag1);
+                TextView category = holder.itemView.findViewById(R.id.categoryfrag);
+                TextView price = holder.itemView.findViewById(R.id.price);
+
                 Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
                 String name = title.getText().toString();
                 String cat = category.getText().toString();
+
                 Favorite favorite = new Favorite.Builder()
                         .titleFav(name)
                         .imageFav("categoryFav")
@@ -83,21 +72,27 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter
                         ModelMutation.create(favorite),
                         response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
                         error -> Log.e("MyAmplifyApp", "Create failed", error)
+
                 );
+                title.setText(holder.favorite.getTitleFav());
+                category.setText(holder.favorite.getCategoryFav());
+                price.setText(holder.favorite.getPriceFav());
             }
         });
 
 
 
-        holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToDetails = new Intent(view.getContext(), Favorite.class);
-                goToDetails.putExtra("Title", favoriteList
-                        .get(position).getTitleFav());
-                view.getContext().startActivity(goToDetails);
-            }
-        });
+//        holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goToDetails = new Intent(view.getContext(), FavoriteActivity.class);
+//                goToDetails.putExtra("Title",favoriteList.get(position).getTitleFav());
+//                goToDetails.putExtra("category",favoriteList.get(position).getCategoryFav());
+//                goToDetails.putExtra("price", favoriteList.get(position).getPriceFav());
+//
+//                view.getContext().startActivity(goToDetails);
+//            }
+//        });
     }
 
 
@@ -106,16 +101,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter
         return favoriteList.size();
     }
 
-    public static class FavoriteHolder
- extends RecyclerView.ViewHolder {
+    public static class FavoriteHolder extends RecyclerView.ViewHolder {
         public Favorite favorite;
         public View itemView;
 
-        public FavoriteHolder
-(@NonNull View itemView) {
+        public FavoriteHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
         }
     }
-
 }
+
+
+

@@ -27,12 +27,12 @@ import java.util.List;
 public class FavoriteActivity extends AppCompatActivity {
 
     private List<Favorite> favoriteList;
+
     RecyclerView favoriteView;
     FavoriteAdapter favoriteAdapter;
     public static PinpointManager getPinpointManager(Context applicationContext) {
         return null;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

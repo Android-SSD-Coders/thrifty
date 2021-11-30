@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".FavActivity"
+            android:exported="false" />
+        <activity
             android:name=".FavoriteActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".Admin"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Signup"
             android:exported="false" />
         <activity
             android:name=".Splash"
@@ -34,10 +37,10 @@
             android:name=".ConfirmationPage"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".Signin"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
