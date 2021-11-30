@@ -53,6 +53,7 @@ public class Admin extends AppCompatActivity {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
+
         Spinner spinnerLanguages=findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.shop, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -80,8 +81,10 @@ public class Admin extends AppCompatActivity {
             String setcolor = color.getText().toString();
             Log.i("category", setcategory );
 
-            Intent intent = new Intent(Admin.this,MainActivity.class);
-            startActivity(intent);
+         Intent intent = new Intent(Admin.this,MainActivity.class);
+         startActivity(intent);
+
+
 
             Product product = new Product.Builder()
                     .title(setname)

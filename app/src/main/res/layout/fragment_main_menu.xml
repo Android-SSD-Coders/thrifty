@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MainMenuFragment"
-    android:background="@color/white">
+    android:background="@color/black">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_nav_menu"
-        android:background="@color/white"/>
+        android:background="@color/black"
+        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

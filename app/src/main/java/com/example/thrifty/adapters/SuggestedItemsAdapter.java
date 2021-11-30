@@ -1,4 +1,4 @@
-package com.example.thrifty.adapters;
+ package com.example.thrifty.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;

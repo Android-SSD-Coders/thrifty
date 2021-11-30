@@ -2,12 +2,16 @@ package com.example.thrifty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
@@ -39,6 +43,7 @@ public class Signup extends AppCompatActivity {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
+        EditText username = findViewById(R.id.firstName);
         EditText emailText = findViewById(R.id.editTextTextPersonName5);
         EditText password = findViewById(R.id.editTextTextPassword);
         Button btnSignUp  = findViewById(R.id.signup);
@@ -53,11 +58,35 @@ public class Signup extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+            Amplify.configure(getApplicationContext());
+
+
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
+
+
+        TextView phone = findViewById(R.id.phoneText);
+
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Signup.this);
+                @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("phone",phone.getText().toString());
+                editor.apply();
+
                 Intent intent = new Intent(Signup.this, ConfirmationPage.class);
                 startActivity(intent);
+
             }
         });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +111,6 @@ public class Signup extends AppCompatActivity {
                         result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
                         error -> Log.e("AuthQuickStart", "Sign up failed", error)
                 );
-
-
                 Intent intent = new Intent(Signup.this, ConfirmationPage.class);
                 startActivity(intent);
             }

@@ -1,5 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,14 +26,15 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 })
 @Index(name = "byCategory", fields = {"categoryID"})
 public final class Product implements Model {
-  public static final QueryField ID = field("id");
-  public static final QueryField TITLE = field("title");
-  public static final QueryField DESCRIPTION = field("description");
-  public static final QueryField PRICE = field("price");
-  public static final QueryField SIZE = field("size");
-  public static final QueryField COLOR = field("color");
-  public static final QueryField CATEGORY_ID = field("categoryID");
-  public static final QueryField IMAGE = field("image");
+
+  public static final QueryField ID = field("Product", "id");
+  public static final QueryField TITLE = field("Product", "title");
+  public static final QueryField DESCRIPTION = field("Product", "description");
+  public static final QueryField PRICE = field("Product", "price");
+  public static final QueryField SIZE = field("Product", "size");
+  public static final QueryField COLOR = field("Product", "color");
+  public static final QueryField CATEGORY_ID = field("Product", "categoryID");
+  public static final QueryField IMAGE = field("Product", "image");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String description;
@@ -41,6 +43,8 @@ public final class Product implements Model {
   private final @ModelField(targetType="String", isRequired = true) String color;
   private final @ModelField(targetType="ID") String categoryID;
   private final @ModelField(targetType="String", isRequired = true) String image;
+  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
+  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
@@ -65,6 +69,23 @@ public final class Product implements Model {
       return color;
   }
   
+  public String getCategoryId() {
+      return categoryID;
+  }
+  
+  public String getImage() {
+      return image;
+  }
+  
+  public String getSize() {
+      return size;
+  }
+  
+  public String getColor() {
+      return color;
+  }
+  
+
   public String getCategoryId() {
       return categoryID;
   }
@@ -99,7 +120,9 @@ public final class Product implements Model {
               ObjectsCompat.equals(getSize(), product.getSize()) &&
               ObjectsCompat.equals(getColor(), product.getColor()) &&
               ObjectsCompat.equals(getCategoryId(), product.getCategoryId()) &&
-              ObjectsCompat.equals(getImage(), product.getImage());
+              ObjectsCompat.equals(getImage(), product.getImage()) &&
+              ObjectsCompat.equals(getCreatedAt(), product.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), product.getUpdatedAt());
       }
   }
   
@@ -114,6 +137,8 @@ public final class Product implements Model {
       .append(getColor())
       .append(getCategoryId())
       .append(getImage())
+      .append(getCreatedAt())
+      .append(getUpdatedAt())
       .toString()
       .hashCode();
   }
@@ -129,7 +154,9 @@ public final class Product implements Model {
       .append("size=" + String.valueOf(getSize()) + ", ")
       .append("color=" + String.valueOf(getColor()) + ", ")
       .append("categoryID=" + String.valueOf(getCategoryId()) + ", ")
-      .append("image=" + String.valueOf(getImage()))
+      .append("image=" + String.valueOf(getImage()) + ", ")
+      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -212,6 +239,7 @@ public final class Product implements Model {
   public interface BuildStep {
     Product build();
     BuildStep id(String id) throws IllegalArgumentException;
+
     BuildStep categoryId(String categoryId);
   }
   

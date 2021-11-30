@@ -10,14 +10,15 @@
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:id="@+id/card">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--ImageVIew to display our Course Image-->
+
         <ImageView
             android:id="@+id/idIVCourseImage"
             android:scaleType="fitXY"
@@ -31,17 +32,29 @@
             android:padding="5dp"
             android:src="@drawable/ic_launcher_background" />
 
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@color/black"
+            android:text="Price"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
         <!--Text View to display Course Name-->
 
         <!--Text VIew to display COurse Rating-->
         <!--Image used in present in drawable folder-->
+
         <TextView
             android:id="@+id/titlefrag1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/idIVCourseImage"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/idIVCourseImage"
             android:text="product name"
             android:textColor="@color/black"
             android:textSize="18sp"

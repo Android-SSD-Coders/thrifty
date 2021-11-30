@@ -16,9 +16,9 @@ public class PopularItemsAdapter extends RecyclerView.Adapter<PopularItemsAdapte
 
     List<Product> popularItems = new ArrayList<>();
 
-    public PopularItemsAdapter(List<Product> popularItems){
-        this.popularItems = popularItems;
-    }
+public PopularItemsAdapter(List<Product> popularItems){
+    this.popularItems = popularItems;
+}
 
     @NonNull
     @Override
@@ -37,11 +37,11 @@ public class PopularItemsAdapter extends RecyclerView.Adapter<PopularItemsAdapte
     }
 
     public static class PopularItemViewHolder extends RecyclerView.ViewHolder{
-        public View itemView;
-        public Product product;
-        public PopularItemViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.itemView = itemView;
-        }
+    public View itemView;
+    public Product product;
+    public PopularItemViewHolder(@NonNull View itemView) {
+        super(itemView);
+        this.itemView = itemView;
     }
+}
 }

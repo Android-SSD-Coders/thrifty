@@ -12,6 +12,10 @@
         <activity
             android:name=".Accessories"
             android:exported="false" />
+<activity
+            android:name=".Profile"
+            android:exported="true" />
+
         <activity
             android:name=".Belts"
             android:exported="false" />
@@ -31,6 +35,7 @@
             android:name=".MenClothes"
             android:exported="false" />
         <activity
+
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

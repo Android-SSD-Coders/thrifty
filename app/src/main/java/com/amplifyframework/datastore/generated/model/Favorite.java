@@ -1,6 +1,8 @@
 package com.amplifyframework.datastore.generated.model;
 
 
+import com.amplifyframework.core.model.temporal.Temporal;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.Objects;
@@ -25,13 +27,14 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 })
 @Index(name = "byUser", fields = {"userID"})
 public final class Favorite implements Model {
-  public static final QueryField ID = field("id");
-  public static final QueryField TITLE_FAV = field("titleFav");
-  public static final QueryField IMAGE_FAV = field("imageFav");
-  public static final QueryField PRICE_FAV = field("priceFav");
-  public static final QueryField SIZE_FAV = field("sizeFav");
-  public static final QueryField CATEGORY_FAV = field("categoryFav");
-  public static final QueryField USER_ID = field("userID");
+  public static final QueryField ID = field("Favorite", "id");
+  public static final QueryField TITLE_FAV = field("Favorite", "titleFav");
+  public static final QueryField IMAGE_FAV = field("Favorite", "imageFav");
+  public static final QueryField PRICE_FAV = field("Favorite", "priceFav");
+  public static final QueryField SIZE_FAV = field("Favorite", "sizeFav");
+  public static final QueryField CATEGORY_FAV = field("Favorite", "categoryFav");
+  public static final QueryField USER_ID = field("Favorite", "userID");
+
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String titleFav;
   private final @ModelField(targetType="String", isRequired = true) String imageFav;
@@ -39,6 +42,8 @@ public final class Favorite implements Model {
   private final @ModelField(targetType="String", isRequired = true) String sizeFav;
   private final @ModelField(targetType="String", isRequired = true) String categoryFav;
   private final @ModelField(targetType="ID") String userID;
+  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
+  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
@@ -67,6 +72,14 @@ public final class Favorite implements Model {
       return userID;
   }
   
+  public Temporal.DateTime getCreatedAt() {
+      return createdAt;
+  }
+  
+  public Temporal.DateTime getUpdatedAt() {
+      return updatedAt;
+  }
+  
   private Favorite(String id, String titleFav, String imageFav, String priceFav, String sizeFav, String categoryFav, String userID) {
     this.id = id;
     this.titleFav = titleFav;
@@ -91,7 +104,10 @@ public final class Favorite implements Model {
               ObjectsCompat.equals(getPriceFav(), favorite.getPriceFav()) &&
               ObjectsCompat.equals(getSizeFav(), favorite.getSizeFav()) &&
               ObjectsCompat.equals(getCategoryFav(), favorite.getCategoryFav()) &&
-              ObjectsCompat.equals(getUserId(), favorite.getUserId());
+
+              ObjectsCompat.equals(getUserId(), favorite.getUserId()) &&
+              ObjectsCompat.equals(getCreatedAt(), favorite.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), favorite.getUpdatedAt());
       }
   }
   
@@ -105,6 +121,8 @@ public final class Favorite implements Model {
       .append(getSizeFav())
       .append(getCategoryFav())
       .append(getUserId())
+      .append(getCreatedAt())
+      .append(getUpdatedAt())
       .toString()
       .hashCode();
   }
@@ -119,7 +137,9 @@ public final class Favorite implements Model {
       .append("priceFav=" + String.valueOf(getPriceFav()) + ", ")
       .append("sizeFav=" + String.valueOf(getSizeFav()) + ", ")
       .append("categoryFav=" + String.valueOf(getCategoryFav()) + ", ")
-      .append("userID=" + String.valueOf(getUserId()))
+      .append("userID=" + String.valueOf(getUserId()) + ", ")
+      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -147,6 +167,7 @@ public final class Favorite implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
+
     return new Favorite(
       id,
       null,

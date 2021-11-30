@@ -16,6 +16,8 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
+
 public class Splash extends Activity {
 
     /** Duration of wait **/
@@ -45,7 +47,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(Splash.this,MainActivity.class);
+                Intent mainIntent = new Intent(Splash.this,Signup.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }
