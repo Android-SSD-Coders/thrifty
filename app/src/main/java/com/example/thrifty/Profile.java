@@ -91,7 +91,7 @@ public class Profile extends AppCompatActivity {
 //        BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
