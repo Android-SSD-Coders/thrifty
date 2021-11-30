@@ -10,21 +10,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
-
-            android:name=".ProductView"
+            android:name=".Accessories"
             android:exported="false" />
 <activity
             android:name=".Profile"
             android:exported="true" />
 
         <activity
+            android:name=".Belts"
+            android:exported="false" />
+        <activity
+            android:name=".Watches"
+            android:exported="false" />
+        <activity
+            android:name=".KidsClothes"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WomenClothes"
+            android:exported="false" />
+        <activity
+            android:name=".MenClothes"
+            android:exported="false" />
+        <activity
+
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".Admin"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Categories"
             android:exported="false" />
         <activity
             android:name=".Splash"

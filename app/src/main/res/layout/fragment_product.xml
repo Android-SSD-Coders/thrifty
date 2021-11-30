@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ProductFragment">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="250dp"
         android:layout_height="300dp"

@@ -1,5 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
   @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class User implements Model {
+
   public static final QueryField ID = field("User", "id");
   public static final QueryField EMAIL = field("User", "email");
   private final @ModelField(targetType="ID", isRequired = true) String id;
@@ -39,7 +41,10 @@ public final class User implements Model {
       return email;
   }
   
-  public Temporal.DateTime getCreatedAt() {
+  public List<Favorite> getFavorite() {
+      return Favorite;
+
+    public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
   
@@ -101,8 +106,18 @@ public final class User implements Model {
    * in a relationship.
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
+    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
   public static User justId(String id) {
+    try {
+      UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+    } catch (Exception exception) {
+      throw new IllegalArgumentException(
+              "Model IDs must be unique in the format of UUID. This method is for creating instances " +
+              "of an existing object with only its ID field for sending as a mutation parameter. When " +
+              "creating a new object, use the standard builder method and leave the ID field blank."
+      );
+    }
     return new User(
       id,
       null
@@ -120,7 +135,7 @@ public final class User implements Model {
 
   public interface BuildStep {
     User build();
-    BuildStep id(String id);
+    BuildStep id(String id) throws IllegalArgumentException;
   }
   
 
@@ -144,11 +159,22 @@ public final class User implements Model {
     }
     
     /** 
+     * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
+     * This should only be set when referring to an already existing object.
      * @param id id
      * @return Current Builder instance, for fluent method chaining
+     * @throws IllegalArgumentException Checks that ID is in the proper format
      */
-    public BuildStep id(String id) {
+    public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
+        
+        try {
+            UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+        } catch (Exception exception) {
+          throw new IllegalArgumentException("Model IDs must be unique in the format of UUID.",
+                    exception);
+        }
+        
         return this;
     }
   }

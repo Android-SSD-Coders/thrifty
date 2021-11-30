@@ -63,10 +63,22 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
+    private List<Product> NewProduct = new ArrayList<>();
+    private List<Product> PopularProduct = new ArrayList<>();
+    private List<Product> SuggestProduct = new ArrayList<>();
+    private List<Product> categorizedProducts = new ArrayList<>();
+
+
+    RecyclerView newItemRecView, suggestedRecView, popularRecView;
+    NewItemsAdapter newItemsAdapter;
+    SuggestedItemsAdapter suggestedItemsAdapter;
+    PopularItemsAdapter popularItemsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         MainMenuFragment mainMenuFragment = new MainMenuFragment();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,6 +93,7 @@ public class MainActivity extends AppCompatActivity  {
             Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
@@ -88,7 +101,6 @@ public class MainActivity extends AppCompatActivity  {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
-
 
         bottomNav();
         initRecyclerViews();
@@ -131,6 +143,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
+
     }
 
     private void initRecyclerViews(){

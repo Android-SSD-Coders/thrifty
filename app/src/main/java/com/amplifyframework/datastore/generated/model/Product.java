@@ -26,6 +26,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 })
 @Index(name = "byCategory", fields = {"categoryID"})
 public final class Product implements Model {
+
   public static final QueryField ID = field("Product", "id");
   public static final QueryField TITLE = field("Product", "title");
   public static final QueryField DESCRIPTION = field("Product", "description");
@@ -76,12 +77,21 @@ public final class Product implements Model {
       return image;
   }
   
-  public Temporal.DateTime getCreatedAt() {
-      return createdAt;
+  public String getSize() {
+      return size;
   }
   
-  public Temporal.DateTime getUpdatedAt() {
-      return updatedAt;
+  public String getColor() {
+      return color;
+  }
+  
+
+  public String getCategoryId() {
+      return categoryID;
+  }
+  
+  public String getImage() {
+      return image;
   }
   
   private Product(String id, String title, String description, String price, String size, String color, String categoryID, String image) {
@@ -162,8 +172,18 @@ public final class Product implements Model {
    * in a relationship.
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
+   * @throws IllegalArgumentException Checks that ID is in the proper format
    */
   public static Product justId(String id) {
+    try {
+      UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+    } catch (Exception exception) {
+      throw new IllegalArgumentException(
+              "Model IDs must be unique in the format of UUID. This method is for creating instances " +
+              "of an existing object with only its ID field for sending as a mutation parameter. When " +
+              "creating a new object, use the standard builder method and leave the ID field blank."
+      );
+    }
     return new Product(
       id,
       null,
@@ -218,7 +238,8 @@ public final class Product implements Model {
 
   public interface BuildStep {
     Product build();
-    BuildStep id(String id);
+    BuildStep id(String id) throws IllegalArgumentException;
+
     BuildStep categoryId(String categoryId);
   }
   
@@ -296,11 +317,22 @@ public final class Product implements Model {
     }
     
     /** 
+     * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
+     * This should only be set when referring to an already existing object.
      * @param id id
      * @return Current Builder instance, for fluent method chaining
+     * @throws IllegalArgumentException Checks that ID is in the proper format
      */
-    public BuildStep id(String id) {
+    public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
+        
+        try {
+            UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+        } catch (Exception exception) {
+          throw new IllegalArgumentException("Model IDs must be unique in the format of UUID.",
+                    exception);
+        }
+        
         return this;
     }
   }

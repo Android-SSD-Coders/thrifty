@@ -36,8 +36,6 @@ public class SearchActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.search);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {

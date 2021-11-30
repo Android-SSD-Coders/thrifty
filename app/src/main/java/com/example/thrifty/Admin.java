@@ -73,7 +73,6 @@ public class Admin extends AppCompatActivity {
             Spinner size = findViewById(R.id.sizespinner);
             EditText color = findViewById(R.id.colortext);
 
-
             String setname = name.getText().toString();
             String setdescription = description.getText().toString();
             String setprice = price.getText().toString();
@@ -86,16 +85,6 @@ public class Admin extends AppCompatActivity {
          startActivity(intent);
 
 
-//            Category category1 = Category.builder()
-//                    .name(setcategory)
-//                    .build();
-//
-////            Details details = new Details.Builder().teamId(teamName)
-//            Amplify.API.mutate(
-//                    ModelMutation.create(category1),
-//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-//            );
 
             Product product = new Product.Builder()
                     .title(setname)
@@ -112,7 +101,6 @@ public class Admin extends AppCompatActivity {
                     response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
                     error -> Log.e("MyAmplifyApp", "Create failed", error)
             );
-
         });
     }
 }
