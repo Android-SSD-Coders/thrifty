@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
-
+            android:name=".FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductView"
             android:exported="false" />
-<activity
+        <activity
             android:name=".Profile"
             android:exported="true" />
-
         <activity
             android:name=".SearchActivity"
             android:exported="false" />

@@ -1,30 +1,19 @@
 package com.example.thrifty.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Favorite;
 import com.amplifyframework.datastore.generated.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
 
@@ -34,7 +23,7 @@ import com.example.thrifty.R;
 public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
     List<Product> products = new ArrayList<>();
 
-    public NewItemsAdapter(List<Product> products, MainActivity mainActivity){
+    public NewItemsAdapter(List<Product> products){
       this.products = products;
     }
 
@@ -52,32 +41,6 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
         TextView price = holder.itemView.findViewById(R.id.price);
-                //        TextView email = holder.itemView.findViewById(R.id.editTextTextPersonName6);
-
-        Button btn = holder.itemView.findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
-                String name = title.getText().toString();
-                String cat = category.getText().toString();
-//                String emailText = email.getText().toString();
-                Favorite favorite = new Favorite.Builder()
-                        .titleFav(name)
-                        .imageFav("categoryFav")
-                        .priceFav("15")
-                        .sizeFav("15")
-                        .categoryFav(cat)
-                        .userId("emailText")
-                        .build();
-                Amplify.API.mutate(
-                        ModelMutation.create(favorite),
-                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
-
-                );
-            }
-        });
 
         title.setText(holder.product.getTitle());
         category.setText(holder.product.getCategoryId());

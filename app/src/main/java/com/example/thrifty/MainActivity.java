@@ -16,7 +16,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 
-import android.util.Printer;
 import android.view.View;
 
 
@@ -111,7 +110,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
 //        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
@@ -131,18 +130,24 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), FavoriteActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 
     private void initRecyclerViews(){
         newItemRecView = findViewById(R.id.newItemsRecView);
         suggestedRecView = findViewById(R.id.suggestedRecView);
-        popularRecView = findViewById(R.id.popularRecView);
+        popularRecView = findViewById(R.id.favoriteRecycle);
 
         newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
         suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
         popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
 
-        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct , MainActivity.this));
+        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct));
         Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -153,7 +158,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
         });
 
 
-        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct , MainActivity.this));
+        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct));
         Handler popularhandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -163,7 +168,7 @@ findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             }
         });
 
-        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct , MainActivity.this));
+        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct ));
         Handler suggesthandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

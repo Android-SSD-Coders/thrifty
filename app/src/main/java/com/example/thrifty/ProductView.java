@@ -3,7 +3,9 @@ package com.example.thrifty;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -55,6 +57,8 @@ public class ProductView extends AppCompatActivity {
         priceTxt.setText(price);
         categoryTxt.setText(category);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ProductView.this);
+        String email1 = sharedPreferences.getString("email", "Your email");
 
     }
 }

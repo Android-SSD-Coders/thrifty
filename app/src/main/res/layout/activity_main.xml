@@ -62,7 +62,7 @@
                 android:textStyle="bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/popularRecView"
+                android:id="@+id/favoriteRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textPopular"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/popularRecView"
+                android:layout_below="@+id/favoriteRecycle"
                 android:text="Suggested Items"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
