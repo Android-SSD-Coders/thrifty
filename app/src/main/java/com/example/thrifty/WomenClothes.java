@@ -59,6 +59,8 @@ public class WomenClothes extends AppCompatActivity {
                     categorizedHandler.sendEmptyMessage(1);
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
+        //******************************
+        //**************************
 
     }
 }
