@@ -23,6 +23,7 @@ import android.view.View;
 
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -47,6 +48,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity  {
                 popularRecView.getAdapter().notifyDataSetChanged();
                 return false;
             }
+
         });
 
         suggestedRecView.setAdapter(new NewItemsAdapter(suggestProducts , MainActivity.this));

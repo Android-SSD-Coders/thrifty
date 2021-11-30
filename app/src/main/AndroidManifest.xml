@@ -30,7 +30,7 @@
             android:name=".KidsClothes"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Splash"
             android:exported="false" />
         <activity
             android:name=".WomenClothes"
@@ -49,16 +49,16 @@
             android:name=".Categories"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ConfirmationPage"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".Signin"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Signup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

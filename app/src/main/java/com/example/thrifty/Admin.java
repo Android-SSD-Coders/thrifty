@@ -1,9 +1,14 @@
 package com.example.thrifty;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,25 +27,37 @@ import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Category;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Admin extends AppCompatActivity {
-
+    String imageName = "";
+    public Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
+        bottomNav();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent   = new Intent(Admin.this, MainActivity.class);
+                Intent intent   = new Intent(Admin.this, Profile.class);
                 startActivity(intent);
             }
         });
-
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         try {
 //            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
@@ -52,6 +69,14 @@ public class Admin extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
+
+
+        Button uploadImg = findViewById(R.id.upload);
+        uploadImg.setOnClickListener(view -> {
+            fileChoose();
+            uploadInputStream();
+
+        });
 
 
         Spinner spinnerLanguages=findViewById(R.id.spinner);
@@ -80,7 +105,7 @@ public class Admin extends AppCompatActivity {
             String setsize = size.getSelectedItem().toString();
             String setcolor = color.getText().toString();
             Log.i("category", setcategory );
-
+            String imageURl = sharedPreferences.getString("FileUrlForReal", "no files");
          Intent intent = new Intent(Admin.this,MainActivity.class);
          startActivity(intent);
 
@@ -92,7 +117,8 @@ public class Admin extends AppCompatActivity {
                     .price(setprice)
                     .size(setsize)
                     .color(setcolor)
-                    .image("")
+                    .image(imageURl)
+                    .tag("")
                     .categoryId(setcategory)
                     .build();
 
@@ -103,4 +129,97 @@ public class Admin extends AppCompatActivity {
             );
         });
     }
+
+
+    public void bottomNav(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+//        BottomNavigationItemView cart = findViewById(R.id.cart);
+//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView profile = findViewById(R.id.profile);
+
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        profile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String fileName = sdf.format(new Date());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        File uploadFile = new File(getApplicationContext().getFilesDir(), fileName);
+        try {
+            InputStream exampleInputStream = getContentResolver().openInputStream(data.getData());
+            OutputStream outputStream = new FileOutputStream(uploadFile);
+            imageName = data.getData().toString();
+            byte[] buff = new byte[1024];
+            int length;
+            while ((length = exampleInputStream.read(buff)) > 0) {
+                outputStream.write(buff, 0, length);
+            }
+            exampleInputStream.close();
+            outputStream.close();
+            Amplify.Storage.uploadFile(
+                    fileName + ".jpg",
+                    uploadFile,
+                    result -> {
+                        Log.i("MyAmplifyAppUpload", "Successfully uploaded: " + result.getKey());
+                        Amplify.Storage.getUrl(result.getKey(), urlResult -> {
+                            sharedPreferences.edit().putString("FileUrlForReal", urlResult.getUrl().toString()).apply();
+                        }, urlError -> {
+                            Log.e("TAG", "onActivityResult: Error please dont be mad");
+                        });
+                    },
+                    storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void uploadInputStream() {
+        if (uri != null) {
+            try {
+                InputStream exampleInputStream = getContentResolver().openInputStream(uri);
+
+                Amplify.Storage.uploadInputStream(
+                        imageName,
+                        exampleInputStream,
+                        result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
+                        storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+                );
+            } catch (FileNotFoundException error) {
+                Log.e("MyAmplifyApp", "Could not find file to open for input stream.", error);
+            }
+        }
+    }
+
+
+    public void fileChoose() {
+        Intent fileChoose = new Intent(Intent.ACTION_GET_CONTENT);
+        fileChoose.setType("*/*");
+        fileChoose = Intent.createChooser(fileChoose, "choose file");
+        startActivityForResult(fileChoose, 1234);
+    }
+
 }
