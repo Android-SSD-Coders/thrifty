@@ -15,6 +15,7 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
 public class ProductView extends AppCompatActivity {
@@ -54,6 +55,25 @@ public class ProductView extends AppCompatActivity {
         textView.setText(title);
         priceTxt.setText(price);
         categoryTxt.setText(category);
+
+        findViewById(R.id.addToCart).setOnClickListener(view -> {
+            Intent intent1 = new Intent(ProductView.this, CartActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+
+//            String name = title.toString();
+//            String priceItem = price;
+//            Product product = new Product.Builder()
+//                    .title(name)
+//                    .description("")
+//                    .price("10000$")
+//                    .size("")
+//                    .color("")
+//                    .image("")
+//                    .build();
+
+
+            startActivity(intent1);
+        });
 
 
     }

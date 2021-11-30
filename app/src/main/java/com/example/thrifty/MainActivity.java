@@ -23,6 +23,7 @@ import android.view.View;
 
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -50,6 +51,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Picasso;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity  {
         bottomNavigationView.setSelectedItemId(R.id.homeNav);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
 //        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
@@ -124,6 +127,11 @@ public class MainActivity extends AppCompatActivity  {
         profile.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Profile.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), CartActivity.class);
             startActivity(intent);
         });
 
@@ -165,6 +173,8 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public boolean handleMessage(@NonNull Message message) {
                 suggestedRecView.getAdapter().notifyDataSetChanged();
+
+
                 return false;
             }
         });
@@ -207,7 +217,7 @@ public class MainActivity extends AppCompatActivity  {
         stopButton.setVisibility(View.GONE);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("aboud.coding@gmail.com")){
+        if (email1.equals("jamalwari2@gmail.com")){
             stopButton.setVisibility(View.VISIBLE);
         }
     }

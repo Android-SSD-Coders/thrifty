@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +28,7 @@ import java.util.List;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
-
-
+import com.squareup.picasso.Picasso;
 
 
 public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
@@ -52,6 +52,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
         TextView price = holder.itemView.findViewById(R.id.price);
+        ImageView image = holder.itemView.findViewById(R.id.idIVCourseImage);
                 //        TextView email = holder.itemView.findViewById(R.id.editTextTextPersonName6);
 
         Button btn = holder.itemView.findViewById(R.id.button2);
@@ -82,6 +83,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         title.setText(holder.product.getTitle());
         category.setText(holder.product.getCategoryId());
         price.setText(holder.product.getPrice());
+        Picasso.get().load(holder.product.getImage()).into(image);
 
 
         holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
