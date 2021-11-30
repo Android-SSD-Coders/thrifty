@@ -22,7 +22,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Favorite type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Favorites", authRules = {
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 @Index(name = "byUser", fields = {"userID"})
 public final class Favorite implements Model {
@@ -34,11 +34,11 @@ public final class Favorite implements Model {
   public static final QueryField CATEGORY_FAV = field("Favorite", "categoryFav");
   public static final QueryField USER_ID = field("Favorite", "userID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String titleFav;
-  private final @ModelField(targetType="String", isRequired = true) String imageFav;
-  private final @ModelField(targetType="String", isRequired = true) String priceFav;
-  private final @ModelField(targetType="String", isRequired = true) String sizeFav;
-  private final @ModelField(targetType="String", isRequired = true) String categoryFav;
+  private final @ModelField(targetType="String") String titleFav;
+  private final @ModelField(targetType="String") String imageFav;
+  private final @ModelField(targetType="String") String priceFav;
+  private final @ModelField(targetType="String") String sizeFav;
+  private final @ModelField(targetType="String") String categoryFav;
   private final @ModelField(targetType="ID") String userID;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -141,7 +141,7 @@ public final class Favorite implements Model {
       .toString();
   }
   
-  public static TitleFavStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -174,39 +174,19 @@ public final class Favorite implements Model {
       categoryFav,
       userID);
   }
-  public interface TitleFavStep {
-    ImageFavStep titleFav(String titleFav);
-  }
-  
-
-  public interface ImageFavStep {
-    PriceFavStep imageFav(String imageFav);
-  }
-  
-
-  public interface PriceFavStep {
-    SizeFavStep priceFav(String priceFav);
-  }
-  
-
-  public interface SizeFavStep {
-    CategoryFavStep sizeFav(String sizeFav);
-  }
-  
-
-  public interface CategoryFavStep {
-    BuildStep categoryFav(String categoryFav);
-  }
-  
-
   public interface BuildStep {
     Favorite build();
     BuildStep id(String id);
+    BuildStep titleFav(String titleFav);
+    BuildStep imageFav(String imageFav);
+    BuildStep priceFav(String priceFav);
+    BuildStep sizeFav(String sizeFav);
+    BuildStep categoryFav(String categoryFav);
     BuildStep userId(String userId);
   }
   
 
-  public static class Builder implements TitleFavStep, ImageFavStep, PriceFavStep, SizeFavStep, CategoryFavStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
     private String titleFav;
     private String imageFav;
@@ -229,36 +209,31 @@ public final class Favorite implements Model {
     }
     
     @Override
-     public ImageFavStep titleFav(String titleFav) {
-        Objects.requireNonNull(titleFav);
+     public BuildStep titleFav(String titleFav) {
         this.titleFav = titleFav;
         return this;
     }
     
     @Override
-     public PriceFavStep imageFav(String imageFav) {
-        Objects.requireNonNull(imageFav);
+     public BuildStep imageFav(String imageFav) {
         this.imageFav = imageFav;
         return this;
     }
     
     @Override
-     public SizeFavStep priceFav(String priceFav) {
-        Objects.requireNonNull(priceFav);
+     public BuildStep priceFav(String priceFav) {
         this.priceFav = priceFav;
         return this;
     }
     
     @Override
-     public CategoryFavStep sizeFav(String sizeFav) {
-        Objects.requireNonNull(sizeFav);
+     public BuildStep sizeFav(String sizeFav) {
         this.sizeFav = sizeFav;
         return this;
     }
     
     @Override
      public BuildStep categoryFav(String categoryFav) {
-        Objects.requireNonNull(categoryFav);
         this.categoryFav = categoryFav;
         return this;
     }
