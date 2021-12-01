@@ -11,15 +11,9 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
-import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Product;
-import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.thrifty.adapters.MenClothesAdapter;
 
 import java.util.ArrayList;

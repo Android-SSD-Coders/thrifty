@@ -30,7 +30,7 @@
             android:name=".KidsClothes"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Signup"
             android:exported="false" />
         <activity
             android:name=".WomenClothes"
@@ -48,14 +48,14 @@
         <activity
             android:name=".Categories"
             android:exported="false" />
-        <activity
-            android:name=".Splash"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Splash"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ConfirmationPage"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Signin"
