@@ -7,6 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="426dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="-52dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="357dp"
+        app:srcCompat="@drawable/vector" />
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -18,16 +33,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
+            android:layout_marginStart="175dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/grey"
             />
     </Toolbar>
-    
+
     <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relative"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="70dp">
 
@@ -35,67 +53,79 @@
             android:id="@+id/searchBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="55dp"
             android:layout_toStartOf="@+id/btnSearch"
-            android:hint="Type Anything" />
+            android:background="@drawable/edit_text_search"
+            android:hint="Search"
+            android:minHeight="48dp"
+            android:padding="10dp" />
 
         <ImageView
             android:id="@+id/btnSearch"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="55dp"
-            android:src="@drawable/ic_baseline_search_24" />
-
-        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="67dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_search_regular" />
+
+        <LinearLayout
+            android:layout_width="371dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/btnSearch"
-            android:layout_marginStart="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="First Category"
-                android:id="@+id/firstCategory"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/firstCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Second Category"
+                android:layout_marginTop="20dp"
+                android:text="First Category" />
+
+            <TextView
                 android:id="@+id/secondCategory"
-                android:layout_marginStart="10dp"/>
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Third Category"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Second Category" />
+
+            <TextView
                 android:id="@+id/thirdCategory"
-                android:layout_marginStart="10dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Third Category" />
 
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txtAllCategories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="See All Categories"
             android:layout_below="@+id/btnSearch"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
-            android:id="@+id/txtAllCategories"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+
+            android:text="See All Categories"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewSearchResults"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/txtAllCategories"
-            android:layout_marginTop="20dp"/>
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
 
     </RelativeLayout>
 
@@ -104,6 +134,9 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

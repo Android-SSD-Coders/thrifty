@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Admin">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="426dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector" />
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -13,14 +26,25 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="175dp"
+            android:text="Admin"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </Toolbar>
 
     <Button
         android:id="@+id/addproduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add products"
+        android:backgroundTint="@color/purple"
+        android:text="Add product"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.887"
@@ -77,7 +101,9 @@
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.348" />
 
+
     <EditText
+
         android:id="@+id/nametext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

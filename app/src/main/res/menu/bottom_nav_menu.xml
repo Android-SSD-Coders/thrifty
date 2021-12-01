@@ -3,21 +3,26 @@
     <item
         android:id="@+id/homeNav"
         android:title="Home"
-        android:icon="@drawable/ic_baseline_home_24"/>
+        android:background="@color/dark_purple"
+        android:icon="@drawable/ic_store_regular"/>
     <item
         android:id="@+id/search"
+        android:background="@color/dark_purple"
         android:title="Search"
         android:icon="@drawable/ic_baseline_search_24"/>
     <item
         android:id="@+id/cart"
         android:title="Cart"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"/>
+        android:background="@color/dark_purple"
+        android:icon="@drawable/ic_shopping_basket_regular"/>
     <item
         android:id="@+id/wishlist"
         android:title="Wishlist"
-        android:icon="@drawable/ic_baseline_favorite_24"/>
+        android:background="@color/dark_purple"
+        android:icon="@drawable/ic_heart"/>
     <item
         android:id="@+id/profile"
         android:title="Profile"
-        android:icon="@drawable/ic_baseline_person_24"/>
+        android:background="@color/dark_purple"
+        android:icon="@drawable/ic_user_regular"/>
 </menu>

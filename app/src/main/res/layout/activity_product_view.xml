@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductView">
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:layout_marginBottom="30dp"
+        android:background="?attr/colorPrimary"
         android:elevation="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Item"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </Toolbar>
 
     <Button

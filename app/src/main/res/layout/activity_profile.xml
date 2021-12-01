@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,146 +8,177 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="426dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="-52dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="357dp"
+        app:srcCompat="@drawable/vector" />
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/graylight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="?attr/colorPrimary"
+        android:layout_marginBottom="30dp" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="299dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="175dp"
+            android:text="Profile"
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </Toolbar>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="243dp"
-            android:background="@color/lapis_lazuli"
-            android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="322dp"
+        android:layout_height="186dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="442dp"
+        app:srcCompat="@drawable/mask_group" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_person_24" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="135dp"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="275dp"
+        app:cardCornerRadius="@android:dimen/app_icon_size">
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="Wiliam Snoe"
-                android:textColor="#fff"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/fav"
+            android:layout_width="42dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_heart" />
 
+    </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="135dp"
-            android:layout_height="71dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="210dp"
-            app:cardCornerRadius="@android:dimen/app_icon_size">
-
-            <ImageView
-                android:id="@+id/fav"
-                android:layout_width="42dp"
-                android:layout_height="37dp"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/ic_baseline_favorite_24" />
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="360dp"
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="45dp">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/silver">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_baseline_person_24"/>
-            <TextView
-                android:id="@+id/name"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Name"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/silver">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_baseline_alternate_email_24"/>
-            <TextView
-                android:id="@+id/email"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="Wiliam@gmail.com"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/silver">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_baseline_phone_24"/>
-            <TextView
-                android:id="@+id/phone"
-                android:textStyle="bold"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:text="+266 225 225"/>
-        </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="339dp"
 
-    </LinearLayout>
+        android:text="Khair Shkokany"
+        android:textSize="22dp" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="279dp"
+        android:text="Email"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="203dp"
+
+        android:text="Phone number"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="178dp"
+        android:text="0797835852" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginBottom="254dp"
+        android:text="Khair_shkokany@hotmail.com" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="278dp"
+        app:srcCompat="@drawable/envelope_filled" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="18dp"
+        android:layout_height="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="203dp"
+        app:srcCompat="@drawable/phone_filled" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="16dp"
+        android:layout_height="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="22dp"
+        app:srcCompat="@drawable/log_out_filled" />
 
     <Button
         android:id="@+id/admin1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add product"
-        android:layout_marginLeft="135dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/admin1"
-        app:menu="@menu/bottom_nav_menu" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp"
+        android:backgroundTint="@color/purple"
+        android:text="Add product"
+        android:textColor="@color/white" />
 
-</LinearLayout>
+</RelativeLayout>
 
