@@ -8,10 +8,7 @@ import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
-import com.amplifyframework.core.model.AuthStrategy;
 import com.amplifyframework.core.model.Model;
-import com.amplifyframework.core.model.ModelOperation;
-import com.amplifyframework.core.model.annotations.AuthRule;
 import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
@@ -21,9 +18,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Product type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Products", authRules = {
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
-})
+@ModelConfig(pluralName = "Products")
 @Index(name = "byCategory", fields = {"categoryID"})
 public final class Product implements Model {
   public static final QueryField ID = field("Product", "id");
@@ -32,16 +27,16 @@ public final class Product implements Model {
   public static final QueryField PRICE = field("Product", "price");
   public static final QueryField SIZE = field("Product", "size");
   public static final QueryField COLOR = field("Product", "color");
-  public static final QueryField CATEGORY_ID = field("Product", "categoryID");
   public static final QueryField IMAGE = field("Product", "image");
+  public static final QueryField CATEGORY_ID = field("Product", "categoryID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String description;
   private final @ModelField(targetType="String", isRequired = true) String price;
   private final @ModelField(targetType="String", isRequired = true) String size;
   private final @ModelField(targetType="String", isRequired = true) String color;
+  private final @ModelField(targetType="String") String image;
   private final @ModelField(targetType="ID") String categoryID;
-  private final @ModelField(targetType="String", isRequired = true) String image;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -68,12 +63,12 @@ public final class Product implements Model {
       return color;
   }
   
-  public String getCategoryId() {
-      return categoryID;
-  }
-  
   public String getImage() {
       return image;
+  }
+  
+  public String getCategoryId() {
+      return categoryID;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -84,15 +79,15 @@ public final class Product implements Model {
       return updatedAt;
   }
   
-  private Product(String id, String title, String description, String price, String size, String color, String categoryID, String image) {
+  private Product(String id, String title, String description, String price, String size, String color, String image, String categoryID) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.price = price;
     this.size = size;
     this.color = color;
-    this.categoryID = categoryID;
     this.image = image;
+    this.categoryID = categoryID;
   }
   
   @Override
@@ -109,8 +104,8 @@ public final class Product implements Model {
               ObjectsCompat.equals(getPrice(), product.getPrice()) &&
               ObjectsCompat.equals(getSize(), product.getSize()) &&
               ObjectsCompat.equals(getColor(), product.getColor()) &&
-              ObjectsCompat.equals(getCategoryId(), product.getCategoryId()) &&
               ObjectsCompat.equals(getImage(), product.getImage()) &&
+              ObjectsCompat.equals(getCategoryId(), product.getCategoryId()) &&
               ObjectsCompat.equals(getCreatedAt(), product.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), product.getUpdatedAt());
       }
@@ -125,8 +120,8 @@ public final class Product implements Model {
       .append(getPrice())
       .append(getSize())
       .append(getColor())
-      .append(getCategoryId())
       .append(getImage())
+      .append(getCategoryId())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -143,8 +138,8 @@ public final class Product implements Model {
       .append("price=" + String.valueOf(getPrice()) + ", ")
       .append("size=" + String.valueOf(getSize()) + ", ")
       .append("color=" + String.valueOf(getColor()) + ", ")
-      .append("categoryID=" + String.valueOf(getCategoryId()) + ", ")
       .append("image=" + String.valueOf(getImage()) + ", ")
+      .append("categoryID=" + String.valueOf(getCategoryId()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -183,8 +178,8 @@ public final class Product implements Model {
       price,
       size,
       color,
-      categoryID,
-      image);
+      image,
+      categoryID);
   }
   public interface TitleStep {
     DescriptionStep title(String title);
@@ -207,23 +202,19 @@ public final class Product implements Model {
   
 
   public interface ColorStep {
-    ImageStep color(String color);
-  }
-  
-
-  public interface ImageStep {
-    BuildStep image(String image);
+    BuildStep color(String color);
   }
   
 
   public interface BuildStep {
     Product build();
     BuildStep id(String id);
+    BuildStep image(String image);
     BuildStep categoryId(String categoryId);
   }
   
 
-  public static class Builder implements TitleStep, DescriptionStep, PriceStep, SizeStep, ColorStep, ImageStep, BuildStep {
+  public static class Builder implements TitleStep, DescriptionStep, PriceStep, SizeStep, ColorStep, BuildStep {
     private String id;
     private String title;
     private String description;
@@ -243,8 +234,8 @@ public final class Product implements Model {
           price,
           size,
           color,
-          categoryID,
-          image);
+          image,
+          categoryID);
     }
     
     @Override
@@ -276,7 +267,7 @@ public final class Product implements Model {
     }
     
     @Override
-     public ImageStep color(String color) {
+     public BuildStep color(String color) {
         Objects.requireNonNull(color);
         this.color = color;
         return this;
@@ -284,7 +275,6 @@ public final class Product implements Model {
     
     @Override
      public BuildStep image(String image) {
-        Objects.requireNonNull(image);
         this.image = image;
         return this;
     }
@@ -307,7 +297,7 @@ public final class Product implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String categoryId, String image) {
+    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String image, String categoryId) {
       super.id(id);
       super.title(title)
         .description(description)

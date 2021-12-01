@@ -1,26 +1,26 @@
 {
   "version": 1,
   "serviceConfiguration": {
+    "apiName": "thrifty",
     "serviceName": "AppSync",
+    "gqlSchemaPath": "/tmp/amplify-5f4ff87e-eb3f-47d2-a2dc-8391321807a4/amplify/backend/api/thrifty/schema.graphql",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "auththrifty21f6c364"
+      "mode": "API_KEY",
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
     },
-    "apiName": "thrifty",
-    "gqlSchemaPath": "/tmp/amplify-b38aed8f-cc0e-48c1-ab26-b93ee968bf10/amplify/backend/api/thrifty/schema.graphql",
     "additionalAuthTypes": [
       {
-        "mode": "API_KEY",
-        "keyDescription": "api key description",
-        "expirationTime": 30
+        "mode": "AWS_IAM"
       },
       {
-        "mode": "AWS_IAM"
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "auththrifty84b44427"
       }
     ]
   }

@@ -1,0 +1,259 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateProduct {
+  onCreateProduct {
+    id
+    title
+    description
+    price
+    size
+    color
+    image
+    isFav
+    isCart
+    categoryID
+    userID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateProduct {
+  onUpdateProduct {
+    id
+    title
+    description
+    price
+    size
+    color
+    image
+    isFav
+    isCart
+    categoryID
+    userID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteProduct {
+  onDeleteProduct {
+    id
+    title
+    description
+    price
+    size
+    color
+    image
+    isFav
+    isCart
+    categoryID
+    userID
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    email
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    email
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    email
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateCategory {
+  onCreateCategory {
+    id
+    name
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateCategory {
+  onUpdateCategory {
+    id
+    name
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteCategory {
+  onDeleteCategory {
+    id
+    name
+    Products {
+      items {
+        id
+        title
+        description
+        price
+        size
+        color
+        image
+        isFav
+        isCart
+        categoryID
+        userID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}

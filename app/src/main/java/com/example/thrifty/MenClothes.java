@@ -50,15 +50,15 @@ public class MenClothes extends AppCompatActivity {
             }
         });
 
-        Amplify.API.query(
-                ModelQuery.list(Product.class,Product.CATEGORY_ID.eq("men_clothes")),
-                response -> {
-                    for (Product product : response.getData()) {
-                        categorizedProducts.add(product);
-                    }
-                    categorizedHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
-        );
+//        Amplify.API.query(
+//                ModelQuery.list(Product.class,Product.CATEGORY_ID.eq("men_clothes")),
+//                response -> {
+//                    for (Product product : response.getData()) {
+//                        categorizedProducts.add(product);
+//                    }
+//                    categorizedHandler.sendEmptyMessage(1);
+//                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+//        );
 
     }
 }

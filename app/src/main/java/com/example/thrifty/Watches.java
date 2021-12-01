@@ -49,15 +49,15 @@ public class Watches extends AppCompatActivity {
                 return false;
             }
         });
-        Amplify.API.query(
-                ModelQuery.list(Product.class,Product.CATEGORY_ID.eq("watches")),
-                response -> {
-                    for (Product product : response.getData()) {
-                        categorizedProducts.add(product);
-                    }
-                    categorizedHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
-        );
+//        Amplify.API.query(
+//                ModelQuery.list(Product.class,Product.CATEGORY_ID.eq("watches")),
+//                response -> {
+//                    for (Product product : response.getData()) {
+//                        categorizedProducts.add(product);
+//                    }
+//                    categorizedHandler.sendEmptyMessage(1);
+//                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+//        );
 
     }
 }

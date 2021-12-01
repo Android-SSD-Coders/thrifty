@@ -19,7 +19,8 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
-import com.amplifyframework.datastore.generated.model.Category;
+//import com.amplifyframework.datastore.generated.model.Category;
+//import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
@@ -93,14 +94,22 @@ public class Admin extends AppCompatActivity {
                     .size(setsize)
                     .color(setcolor)
                     .image("")
-                    .categoryId(setcategory)
                     .build();
+            Log.i("Khair", "this is the product: "+ product.getId());
 
-            Amplify.API.mutate(
-                    ModelMutation.create(product),
-                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                    error -> Log.e("MyAmplifyApp", "Create failed", error)
-            );
+//            Amplify.API.mutate(
+//                    ModelMutation.create(product),
+//                    response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+//            );
+
+
+                Amplify.DataStore.save(
+                       product,success->Log.i("Khair","Shitttttttttttttttttttttttttttt"+success.item().getId()),
+                        error->Log.e("Jamal","So Shittttttttttttttttttttt")
+                );
+
+
         });
     }
 }

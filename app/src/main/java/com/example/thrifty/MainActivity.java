@@ -44,6 +44,8 @@ import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.thrifty.adapters.NewItemsAdapter;
+import com.example.thrifty.emergency.Products;
+import com.example.thrifty.emergency.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,13 +59,19 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private static PinpointManager pinpointManager;
-    private static final String TAG = "MainActivity";
+    public static PinpointManager pinpointManager;
+    public static final String TAG = "MainActivity";
 
-    private final List<Product> newProducts = new ArrayList<>();
-    private final List<Product> popularProducts = new ArrayList<>();
-    private final List<Product> suggestProducts = new ArrayList<>();
-    private final List<Product> categorizedProducts = new ArrayList<>();
+//    public  List<Product> newProducts = new ArrayList<>();
+//    public  List<Product> popularProducts = new ArrayList<>();
+//    public  List<Product> suggestProducts = new ArrayList<>();
+//    public  List<Product> categorizedProducts = new ArrayList<>();
+
+//    Locally
+
+    public  List<Products> newProducts = new ArrayList<>();
+    public  List<Products> popularProducts = new ArrayList<>();
+    public  List<Products> suggestProducts = new ArrayList<>();
 
     RecyclerView newItemRecView, suggestedRecView, popularRecView;
 
@@ -73,10 +81,12 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         configure();
         bottomNav();
-        initRecyclerViews();
+//        initRecyclerViews();
+        initRecyclerViewLocally();
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
         createNotificationChannel();
+        Utils.initSharedPreferences(this);
 
         findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +95,25 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void initRecyclerViewLocally() {
+        newItemRecView = findViewById(R.id.newItemsRecView);
+        suggestedRecView = findViewById(R.id.suggestedRecView);
+        popularRecView = findViewById(R.id.popularRecView);
+
+        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+
+
+        ArrayList<Products> allProducts = Utils.getAllProducts(getApplicationContext());
+
+        if (null!= allProducts){
+            newItemRecView.setAdapter(new NewItemsAdapter(allProducts , MainActivity.this));
+        }
+
 
     }
 
@@ -137,78 +166,78 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-    private void initRecyclerViews(){
-        newItemRecView = findViewById(R.id.newItemsRecView);
-        suggestedRecView = findViewById(R.id.suggestedRecView);
-        popularRecView = findViewById(R.id.popularRecView);
-
-        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
-        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
-        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
-
-        newItemRecView.setAdapter(new NewItemsAdapter(newProducts , MainActivity.this));
-        Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public boolean handleMessage(@NonNull Message message) {
-                newItemRecView.getAdapter().notifyDataSetChanged();
-                return false;
-            }
-        });
-
-
-        popularRecView.setAdapter(new NewItemsAdapter(popularProducts , MainActivity.this));
-        Handler popularHandler = new Handler(Looper.myLooper(), new Handler.Callback() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public boolean handleMessage(@NonNull Message message) {
-                popularRecView.getAdapter().notifyDataSetChanged();
-                return false;
-            }
-        });
-
-        suggestedRecView.setAdapter(new NewItemsAdapter(suggestProducts , MainActivity.this));
-        Handler suggestHandler = new Handler(Looper.myLooper(), new Handler.Callback() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public boolean handleMessage(@NonNull Message message) {
-                suggestedRecView.getAdapter().notifyDataSetChanged();
-
-
-                return false;
-            }
-        });
-
-        Amplify.API.query(
-                ModelQuery.list(Product.class),
-                response -> {
-                    for (Product product : response.getData()) {
-                        newProducts.add(product);
-                    }
-                    handler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
-        );
-
-        Amplify.API.query(
-                ModelQuery.list(Product.class),
-                response -> {
-                    for (Product product : response.getData()) {
-                        popularProducts.add(product);
-                    }
-                    popularHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
-        );
-
-        Amplify.API.query(
-                ModelQuery.list(Product.class),
-                response -> {
-                    for (Product product : response.getData()) {
-                        suggestProducts.add(product);
-                    }
-                    suggestHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
-        );
-    }
+//    private void initRecyclerViews(){
+//        newItemRecView = findViewById(R.id.newItemsRecView);
+//        suggestedRecView = findViewById(R.id.suggestedRecView);
+//        popularRecView = findViewById(R.id.popularRecView);
+//
+//        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+//        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+//        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+//
+//        newItemRecView.setAdapter(new NewItemsAdapter(newProducts , MainActivity.this));
+//        Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public boolean handleMessage(@NonNull Message message) {
+//                newItemRecView.getAdapter().notifyDataSetChanged();
+//                return false;
+//            }
+//        });
+//
+//
+//        popularRecView.setAdapter(new NewItemsAdapter(popularProducts , MainActivity.this));
+//        Handler popularHandler = new Handler(Looper.myLooper(), new Handler.Callback() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public boolean handleMessage(@NonNull Message message) {
+//                popularRecView.getAdapter().notifyDataSetChanged();
+//                return false;
+//            }
+//        });
+//
+//        suggestedRecView.setAdapter(new NewItemsAdapter(suggestProducts , MainActivity.this));
+//        Handler suggestHandler = new Handler(Looper.myLooper(), new Handler.Callback() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public boolean handleMessage(@NonNull Message message) {
+//                suggestedRecView.getAdapter().notifyDataSetChanged();
+//
+//
+//                return false;
+//            }
+//        });
+//
+//        Amplify.API.query(
+//                ModelQuery.list(Product.class),
+//                response -> {
+//                    for (Product product : response.getData()) {
+//                        newProducts.add(product);
+//                    }
+//                    handler.sendEmptyMessage(1);
+//                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+//        );
+//
+//        Amplify.API.query(
+//                ModelQuery.list(Product.class),
+//                response -> {
+//                    for (Product product : response.getData()) {
+//                        popularProducts.add(product);
+//                    }
+//                    popularHandler.sendEmptyMessage(1);
+//                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+//        );
+//
+////        Amplify.API.query(
+////                ModelQuery.list(Product.class),
+////                response -> {
+////                    for (Product product : response.getData()) {
+////                        suggestProducts.add(product);
+////                    }
+////                    suggestHandler.sendEmptyMessage(1);
+////                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+////        );
+//    }
 
     @Override
     protected void onResume() {

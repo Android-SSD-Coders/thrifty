@@ -33,13 +33,16 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
-
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.amazonaws:aws-android-sdk-pinpoint:2.36.0'
     implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.36.0'
-
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.amplifyframework:aws-analytics-pinpoint:1.30.0'
     implementation 'com.amplifyframework:aws-storage-s3:1.30.0'
     implementation 'com.amplifyframework:aws-auth-cognito:1.30.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.amplifyframework:core:1.30.0'
     implementation 'com.amplifyframework:aws-datastore:1.30.0'
     implementation 'com.amplifyframework:aws-api:1.30.0'

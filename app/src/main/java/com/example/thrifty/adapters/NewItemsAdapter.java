@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Favorite;
+//import com.amplifyframework.datastore.generated.model.Favorite;
 import com.amplifyframework.datastore.generated.model.Product;
 
 import java.util.ArrayList;
@@ -28,13 +28,14 @@ import java.util.List;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
+import com.example.thrifty.emergency.Products;
 import com.squareup.picasso.Picasso;
 
 
 public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
-    List<Product> products = new ArrayList<>();
+    List<Products> products = new ArrayList<>();
 
-    public NewItemsAdapter(List<Product> products, MainActivity mainActivity){
+    public NewItemsAdapter(List<Products> products, MainActivity mainActivity){
       this.products = products;
     }
 
@@ -48,6 +49,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
 
     @Override
     public void onBindViewHolder(@NonNull NewItemsHolder holder, @SuppressLint("RecyclerView") int position) {
+//        holder.product = products.get(position);
         holder.product = products.get(position);
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
@@ -60,30 +62,30 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
-                String name = title.getText().toString();
-                String cat = category.getText().toString();
-//                String emailText = email.getText().toString();
-                Favorite favorite = new Favorite.Builder()
-                        .titleFav(name)
-                        .imageFav("categoryFav")
-                        .priceFav("15")
-                        .sizeFav("15")
-                        .categoryFav(cat)
-                        .userId("emailText")
-                        .build();
-                Amplify.API.mutate(
-                        ModelMutation.create(favorite),
-                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
-
-                );
+//                String name = title.getText().toString();
+//                String cat = category.getText().toString();
+////                String emailText = email.getText().toString();
+//                Favorite favorite = new Favorite.Builder()
+//                        .titleFav(name)
+//                        .imageFav("categoryFav")
+//                        .priceFav("15")
+//                        .sizeFav("15")
+//                        .categoryFav(cat)
+//                        .userId("emailText")
+//                        .build();
+//                Amplify.API.mutate(
+//                        ModelMutation.create(favorite),
+//                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+//
+//                );
             }
         });
 
         title.setText(holder.product.getTitle());
-        category.setText(holder.product.getCategoryId());
+//        category.setText(holder.product.getCategoryId());
         price.setText(holder.product.getPrice());
-        Picasso.get().load(holder.product.getImage()).into(image);
+        Picasso.get().load(holder.product.getImageUrl()).into(image);
 
 
         holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
@@ -91,7 +93,8 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
             public void onClick(View view) {
                 Intent goToDetails = new Intent(view.getContext(), ProductView.class);
                 goToDetails.putExtra("Title",products.get(position).getTitle());
-                goToDetails.putExtra("category",products.get(position).getCategoryId());
+//                goToDetails.putExtra("category",products.get(position).getCategoryId());
+                goToDetails.putExtra("Description",products.get(position).getDescription());
                 goToDetails.putExtra("price", products.get(position).getPrice());
 
                 view.getContext().startActivity(goToDetails);
@@ -106,7 +109,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
     }
 
   public static class NewItemsHolder extends RecyclerView.ViewHolder{
-        public  Product product;
+        public  Products product;
         public View itemView;
         public NewItemsHolder(@NonNull View itemView) {
           super(itemView);

@@ -1,26 +1,27 @@
 {
-  "dev": {
+  "env": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-thrifty-dev-144858-authRole",
-      "UnauthRoleArn": "arn:aws:iam::459760485083:role/amplify-thrifty-dev-144858-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::459760485083:role/amplify-thrifty-dev-144858-authRole",
+      "AuthRoleName": "amplify-thrifty-env-00527-authRole",
+      "UnauthRoleArn": "arn:aws:iam::459760485083:role/amplify-thrifty-env-00527-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::459760485083:role/amplify-thrifty-env-00527-authRole",
       "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-thrifty-dev-144858-deployment",
-      "UnauthRoleName": "amplify-thrifty-dev-144858-unauthRole",
-      "StackName": "amplify-thrifty-dev-144858",
-      "StackId": "arn:aws:cloudformation:eu-central-1:459760485083:stack/amplify-thrifty-dev-144858/659b7da0-4f80-11ec-a95f-022ef605612a",
-      "AmplifyAppId": "d2xhz0mn88sj6z"
+      "DeploymentBucketName": "amplify-thrifty-env-00527-deployment",
+      "UnauthRoleName": "amplify-thrifty-env-00527-unauthRole",
+      "StackName": "amplify-thrifty-env-00527",
+      "StackId": "arn:aws:cloudformation:eu-central-1:459760485083:stack/amplify-thrifty-env-00527/a347a100-5229-11ec-a2be-06c6fc68457a",
+      "AmplifyAppId": "d17opvzdzewrwi"
     },
     "categories": {
+      "auth": {
+        "thrifty84b44427": {},
+        "true": {}
+      },
       "notifications": {
         "Pinpoint": {
-          "Name": "ThriftyOWUjV-dev",
-          "Id": "f06bd624184f4c90bc7556672ddd9619",
+          "Name": "thrifty5eqiV-env",
+          "Id": "22791ad444a648fea9bb95e1e8e1a9e3",
           "Region": "eu-central-1"
         }
-      },
-      "auth": {
-        "thrifty21f6c364": {}
       }
     }
   }

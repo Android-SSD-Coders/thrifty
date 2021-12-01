@@ -1,0 +1,21 @@
+{
+    "appName": "thrifty",
+    "roleName": "pinpointLambdaRole66d02b86",
+    "cloudformationPolicyName": "cloudformationPolicy66d02b86",
+    "cloudWatchPolicyName": "cloudWatchPolicy66d02b86",
+    "pinpointPolicyName": "pinpointPolicy66d02b86",
+    "authPolicyName": "pinpoint_amplify_66d02b86",
+    "unauthPolicyName": "pinpoint_amplify_66d02b86",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

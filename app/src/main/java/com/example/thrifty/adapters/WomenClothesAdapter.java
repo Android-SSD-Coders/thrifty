@@ -34,7 +34,7 @@ public class WomenClothesAdapter extends RecyclerView.Adapter<WomenClothesAdapte
         TextView price = holder.itemView.findViewById(R.id.price);
 
         title.setText(holder.product.getTitle());
-        category.setText(holder.product.getCategoryId());
+//        category.setText(holder.product.getCategoryId());
         price.setText(holder.product.getPrice());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,7 @@ public class WomenClothesAdapter extends RecyclerView.Adapter<WomenClothesAdapte
             public void onClick(View view) {
                 Intent goToDetails = new Intent(view.getContext(), ProductView.class);
                 goToDetails.putExtra("Title",products.get(position).getTitle());
-                goToDetails.putExtra("category",products.get(position).getCategoryId());
+//                goToDetails.putExtra("category",products.get(position).getCategoryId());
                 goToDetails.putExtra("price", products.get(position).getPrice());
 
                 view.getContext().startActivity(goToDetails);

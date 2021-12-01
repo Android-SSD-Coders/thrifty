@@ -23,14 +23,15 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the User type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Users", authRules = {
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ }),
+  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class User implements Model {
   public static final QueryField ID = field("User", "id");
   public static final QueryField EMAIL = field("User", "email");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String email;
-  private final @ModelField(targetType="Favorite") @HasMany(associatedWith = "userID", type = Favorite.class) List<Favorite> Favorite = null;
+  private final @ModelField(targetType="String") String email;
+  private final @ModelField(targetType="Product") @HasMany(associatedWith = "userID", type = Product.class) List<Product> Products = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -41,8 +42,8 @@ public final class User implements Model {
       return email;
   }
   
-  public List<Favorite> getFavorite() {
-      return Favorite;
+  public List<Product> getProducts() {
+      return Products;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -96,7 +97,7 @@ public final class User implements Model {
       .toString();
   }
   
-  public static EmailStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -119,18 +120,14 @@ public final class User implements Model {
     return new CopyOfBuilder(id,
       email);
   }
-  public interface EmailStep {
+  public interface BuildStep {
+    User build();
+    BuildStep id(String id);
     BuildStep email(String email);
   }
   
 
-  public interface BuildStep {
-    User build();
-    BuildStep id(String id);
-  }
-  
-
-  public static class Builder implements EmailStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
     private String email;
     @Override
@@ -144,7 +141,6 @@ public final class User implements Model {
     
     @Override
      public BuildStep email(String email) {
-        Objects.requireNonNull(email);
         this.email = email;
         return this;
     }

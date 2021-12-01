@@ -6,21 +6,21 @@
             "output": {
                 "authConfig": {
                     "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "auththrifty21f6c364"
+                        "authenticationType": "API_KEY",
+                        "apiKeyConfig": {
+                            "apiKeyExpirationDays": 30,
+                            "description": "api key description"
                         }
                     },
                     "additionalAuthenticationProviders": [
                         {
-                            "authenticationType": "API_KEY",
-                            "apiKeyConfig": {
-                                "apiKeyExpirationDays": 30,
-                                "description": "api key description"
-                            }
+                            "authenticationType": "AWS_IAM"
                         },
                         {
-                            "authenticationType": "AWS_IAM"
+                            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                            "userPoolConfig": {
+                                "userPoolId": "auththrifty84b44427"
+                            }
                         }
                     ]
                 }
@@ -28,13 +28,14 @@
         }
     },
     "auth": {
-        "thrifty21f6c364": {
+        "thrifty84b44427": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
             "dependsOn": [],
             "customAuth": false,
             "frontendAuthConfig": {
-                "loginMechanisms": [
+                "socialProviders": [],
+                "usernameAttributes": [
                     "EMAIL"
                 ],
                 "signupAttributes": [
@@ -55,23 +56,24 @@
         }
     },
     "storage": {
-        "SSDStorage": {
+        "s309898101": {
             "service": "S3",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
+        }
+    },
+    "analytics": {
+        "thrifty": {
+            "service": "Pinpoint",
             "providerPlugin": "awscloudformation"
         }
     },
     "notifications": {
-        "ThriftyOWUjV": {
+        "thrifty5eqiV": {
             "service": "Pinpoint",
             "channels": [
                 "FCM"
             ]
-        }
-    },
-    "analytics": {
-        "ThriftyOWUjV": {
-            "service": "Pinpoint",
-            "providerPlugin": "awscloudformation"
         }
     }
 }

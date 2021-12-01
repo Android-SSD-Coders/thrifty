@@ -23,13 +23,13 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Category type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Categories", authRules = {
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class Category implements Model {
   public static final QueryField ID = field("Category", "id");
   public static final QueryField NAME = field("Category", "name");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String name;
+  private final @ModelField(targetType="String") String name;
   private final @ModelField(targetType="Product") @HasMany(associatedWith = "categoryID", type = Product.class) List<Product> Products = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -96,7 +96,7 @@ public final class Category implements Model {
       .toString();
   }
   
-  public static NameStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -119,18 +119,14 @@ public final class Category implements Model {
     return new CopyOfBuilder(id,
       name);
   }
-  public interface NameStep {
+  public interface BuildStep {
+    Category build();
+    BuildStep id(String id);
     BuildStep name(String name);
   }
   
 
-  public interface BuildStep {
-    Category build();
-    BuildStep id(String id);
-  }
-  
-
-  public static class Builder implements NameStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
     private String name;
     @Override
@@ -144,7 +140,6 @@ public final class Category implements Model {
     
     @Override
      public BuildStep name(String name) {
-        Objects.requireNonNull(name);
         this.name = name;
         return this;
     }

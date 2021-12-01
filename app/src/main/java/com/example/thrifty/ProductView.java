@@ -47,14 +47,17 @@ public class ProductView extends AppCompatActivity {
         String title = intent.getStringExtra("Title");
         String price = intent.getStringExtra("price");
         String category = intent.getStringExtra("category");
+        String description = intent.getStringExtra("Description");
 
         TextView textView = findViewById(R.id.txtTitle);
         TextView priceTxt = findViewById(R.id.txtPrice);
         TextView categoryTxt = findViewById(R.id.category);
+        TextView descriptionText = findViewById(R.id.descriptionText);
 
         textView.setText(title);
         priceTxt.setText(price);
         categoryTxt.setText(category);
+        descriptionText.setText(description);
 
         findViewById(R.id.addToCart).setOnClickListener(view -> {
             Intent intent1 = new Intent(ProductView.this, CartActivity.class);
