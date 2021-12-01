@@ -12,4 +12,9 @@
     <color name="silver">#eeeeee</color>
     <color name="pink">#ff5964</color>
     <color name="lapis_lazuli">#38618c</color>
+    <color name="colorPrimary">#0288D1</color>
+    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorText">#000111</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
