@@ -31,7 +31,13 @@
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_signin.xml" value="0.15657894736842104" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_signup.xml" value="0.22" />
         <entry key="..\:/Users/jamal/thrifty/app/src/main/res/layout/activity_splash.xml" value="0.15657894736842104" />
+        <entry key="app/src/main/res/layout/activity_favourie.xml" value="0.340625" />
+        <entry key="app/src/main/res/layout/activity_favourite.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/card_layout.xml" value="0.2984375" />
+        <entry key="app/src/main/res/layout/fragment_main_menu.xml" value="0.1875" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1875" />
       </map>
     </option>
   </component>

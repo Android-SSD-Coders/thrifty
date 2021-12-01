@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private List<Product> NewProduct = new ArrayList<>();
     private List<Product> PopularProduct = new ArrayList<>();
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         try {
-//            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity  {
         initRecyclerViews();
 
 
-
         findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,53 +91,58 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
-
     }
 
-    public void bottomNav(){
+    public void bottomNav() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.homeNav);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
 //        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
 
         homeNav.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
 
         profile.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Profile.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), FavouriteActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
     }
 
-    private void initRecyclerViews(){
+    private void initRecyclerViews() {
 
         newItemRecView = findViewById(R.id.newItemsRecView);
         suggestedRecView = findViewById(R.id.suggestedRecView);
         popularRecView = findViewById(R.id.popularRecView);
 
 //        newItemRecView.setAdapter(newItemsAdapter);
-        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+        newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
         suggestedRecView.setAdapter(suggestedItemsAdapter);
-        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+        suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
         popularRecView.setAdapter(popularItemsAdapter);
-        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+        popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false));
 
-        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct , MainActivity.this));
+        newItemRecView.setAdapter(new NewItemsAdapter(NewProduct));
         Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
-        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct , MainActivity.this));
+        popularRecView.setAdapter(new NewItemsAdapter(PopularProduct));
         Handler popularhandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct , MainActivity.this));
+        suggestedRecView.setAdapter(new NewItemsAdapter(SuggestProduct));
         Handler suggesthandler = new Handler(Looper.myLooper(), new Handler.Callback() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -212,7 +215,7 @@ public class MainActivity extends AppCompatActivity  {
         stopButton.setVisibility(View.GONE);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("jamalwari2@gmail.com")){
+        if (email1.equals("jamalwari2@gmail.com")) {
             stopButton.setVisibility(View.VISIBLE);
         }
     }

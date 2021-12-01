@@ -18,70 +18,57 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Favourites;
-import com.amplifyframework.datastore.generated.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amplifyframework.datastore.generated.model.User;
-import com.example.thrifty.MainActivity;
+import com.amplifyframework.datastore.generated.model.Product;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
 
 
-public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
-    List<Product> products = new ArrayList<>();
-    List<Favourites> favourites;
-    List<User> users;
+public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavHolder> {
+    List<Favourites> favouritesList = new ArrayList<>();
+    List<Favourites> productList = new ArrayList<>();
 
-
-    public NewItemsAdapter(List<Product> products) {
-        this.products = products;
+    public FavAdapter(List<Favourites> favouritesList) {
+        this.favouritesList = favouritesList;
     }
 
 
     @NonNull
     @Override
-    public NewItemsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new NewItemsAdapter.NewItemsHolder(view);
+        return new FavAdapter.FavHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewItemsHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.product = products.get(position);
+    public void onBindViewHolder(@NonNull FavHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.favourite = favouritesList.get(position);
+
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
-        TextView price = holder.itemView.findViewById(R.id.price);
+//        TextView price = holder.itemView.findViewById(R.id.price);
 
-        title.setText(holder.product.getTitle());
-        category.setText(holder.product.getCategoryId());
-        price.setText(holder.product.getPrice());
-
-        holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToDetails = new Intent(view.getContext(), ProductView.class);
-                goToDetails.putExtra("Title",products.get(position).getTitle());
-                goToDetails.putExtra("category",products.get(position).getCategoryId());
-                goToDetails.putExtra("price", products.get(position).getPrice());
-
-                view.getContext().startActivity(goToDetails);
-            }
-        });
+        title.setText(holder.favourite.getProductId());
+        category.setText(holder.favourite.getUserId());
+//        price.setText(holder.product.getPrice());
     }
+
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return favouritesList.size();
     }
 
-    public static class NewItemsHolder extends RecyclerView.ViewHolder {
-        public Product product;
-        public View itemView;
-        public User user;
 
-        public NewItemsHolder(@NonNull View itemView) {
+    public static class FavHolder extends RecyclerView.ViewHolder {
+        public Favourites favourite;
+        public View itemView;
+        public Product product;
+
+        public FavHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
 
@@ -111,8 +98,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
             });
 
         }
-
-
     }
 }
+
 
