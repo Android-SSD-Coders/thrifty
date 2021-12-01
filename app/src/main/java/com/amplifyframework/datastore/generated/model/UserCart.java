@@ -18,26 +18,33 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Favorite type in your schema. */
+/** This is an auto generated class representing the UserCart type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Favorites", authRules = {
+@ModelConfig(pluralName = "UserCarts", authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-public final class Favorite implements Model {
+public final class UserCart implements Model {
   public static final QueryField ID = field("id");
+  public static final QueryField PRODUCT_ID = field("productID");
   public static final QueryField USER_ID = field("userID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="ID") String userID;
+  private final @ModelField(targetType="ID", isRequired = true) String productID;
+  private final @ModelField(targetType="ID", isRequired = true) String userID;
   public String getId() {
       return id;
+  }
+  
+  public String getProductId() {
+      return productID;
   }
   
   public String getUserId() {
       return userID;
   }
   
-  private Favorite(String id, String userID) {
+  private UserCart(String id, String productID, String userID) {
     this.id = id;
+    this.productID = productID;
     this.userID = userID;
   }
   
@@ -48,9 +55,10 @@ public final class Favorite implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Favorite favorite = (Favorite) obj;
-      return ObjectsCompat.equals(getId(), favorite.getId()) &&
-              ObjectsCompat.equals(getUserId(), favorite.getUserId());
+      UserCart userCart = (UserCart) obj;
+      return ObjectsCompat.equals(getId(), userCart.getId()) &&
+              ObjectsCompat.equals(getProductId(), userCart.getProductId()) &&
+              ObjectsCompat.equals(getUserId(), userCart.getUserId());
       }
   }
   
@@ -58,6 +66,7 @@ public final class Favorite implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
+      .append(getProductId())
       .append(getUserId())
       .toString()
       .hashCode();
@@ -66,14 +75,15 @@ public final class Favorite implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Favorite {")
+      .append("UserCart {")
       .append("id=" + String.valueOf(getId()) + ", ")
+      .append("productID=" + String.valueOf(getProductId()) + ", ")
       .append("userID=" + String.valueOf(getUserId()))
       .append("}")
       .toString();
   }
   
-  public static BuildStep builder() {
+  public static ProductIdStep builder() {
       return new Builder();
   }
   
@@ -86,7 +96,7 @@ public final class Favorite implements Model {
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
-  public static Favorite justId(String id) {
+  public static UserCart justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
     } catch (Exception exception) {
@@ -96,37 +106,58 @@ public final class Favorite implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
-    return new Favorite(
+    return new UserCart(
       id,
+      null,
       null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
+      productID,
       userID);
   }
-  public interface BuildStep {
-    Favorite build();
-    BuildStep id(String id) throws IllegalArgumentException;
+  public interface ProductIdStep {
+    UserIdStep productId(String productId);
+  }
+  
+
+  public interface UserIdStep {
     BuildStep userId(String userId);
   }
   
 
-  public static class Builder implements BuildStep {
+  public interface BuildStep {
+    UserCart build();
+    BuildStep id(String id) throws IllegalArgumentException;
+  }
+  
+
+  public static class Builder implements ProductIdStep, UserIdStep, BuildStep {
     private String id;
+    private String productID;
     private String userID;
     @Override
-     public Favorite build() {
+     public UserCart build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Favorite(
+        return new UserCart(
           id,
+          productID,
           userID);
     }
     
     @Override
+     public UserIdStep productId(String productId) {
+        Objects.requireNonNull(productId);
+        this.productID = productId;
+        return this;
+    }
+    
+    @Override
      public BuildStep userId(String userId) {
+        Objects.requireNonNull(userId);
         this.userID = userId;
         return this;
     }
@@ -154,9 +185,15 @@ public final class Favorite implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String userId) {
+    private CopyOfBuilder(String id, String productId, String userId) {
       super.id(id);
-      super.userId(userId);
+      super.productId(productId)
+        .userId(userId);
+    }
+    
+    @Override
+     public CopyOfBuilder productId(String productId) {
+      return (CopyOfBuilder) super.productId(productId);
     }
     
     @Override

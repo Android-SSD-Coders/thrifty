@@ -1,33 +1,39 @@
-type Favorite @model @auth(rules: [{allow: private}]) @key(name: "byUser", fields: ["userID"]) {
-  id: ID!
-  titleFav: String!
-  imageFav: String!
-  priceFav: String!
-  sizeFav: String!
-  categoryFav: String!
-  userID: ID
-}
-
-type User @model @auth(rules: [{allow: private}]) {
-  id: ID!
-  email: String!
-  Favorite: [Favorite] @connection(keyName: "byUser", fields: ["id"])
-}
-
-type Category @model @auth(rules: [{allow: private}]) {
-  id: ID!
-  name: String!
-  Products: [Product] @connection(keyName: "byCategory", fields: ["id"])
-}
-
-type Product @model @auth(rules: [{allow: private}]) @key(name: "byCategory", fields: ["categoryID"]) {
+type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String!
   description: String!
   price: String!
   size: String!
   color: String!
-  categoryID: ID
   image: String!
+  categoryID: ID @index(name: "byCategory")
+  userCart: [UserCart] @hasMany(indexName: "byUserCart1", fields: ["id"])
+  favourites: [Favourites] @hasMany(indexName: "byFavourites1", fields: ["id"])
 }
- 
+
+type UserCart @model @auth(rules: [{allow: public}]) {
+  productID: ID! @index(name: "byUserCart1")
+  product: Product! @belongsTo(fields: ["productID"])
+  userID: ID! @index(name: "byUserCart2")
+  user: User! @belongsTo(fields: ["userID"])
+}
+
+type Favourites @model @auth(rules: [{allow: public}]) {
+  productID: ID! @index(name: "byFavourites1")
+  product: Product! @belongsTo(fields: ["productID"])
+  userID: ID! @index(name: "byFavourites2")
+  user: User! @belongsTo(fields: ["userID"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: String!
+  favourites: [Favourites] @hasMany(indexName: "byFavourites2", fields: ["id"])
+  userCart: [UserCart] @hasMany(indexName: "byUserCart2", fields: ["id"])
+}
+
+type Category @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  Products: [Product] @hasMany(indexName: "byCategory", fields: ["id"])
+}

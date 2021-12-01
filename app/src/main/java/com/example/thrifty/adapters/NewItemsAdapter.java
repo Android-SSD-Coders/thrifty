@@ -54,30 +54,30 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         TextView price = holder.itemView.findViewById(R.id.price);
                 //        TextView email = holder.itemView.findViewById(R.id.editTextTextPersonName6);
 
-        Button btn = holder.itemView.findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
-                String name = title.getText().toString();
-                String cat = category.getText().toString();
-//                String emailText = email.getText().toString();
-                Favorite favorite = new Favorite.Builder()
-                        .titleFav(name)
-                        .imageFav("categoryFav")
-                        .priceFav("15")
-                        .sizeFav("15")
-                        .categoryFav(cat)
-                        .userId("emailText")
-                        .build();
-                Amplify.API.mutate(
-                        ModelMutation.create(favorite),
-                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
-
-                );
-            }
-        });
+//        Button btn = holder.itemView.findViewById(R.id.button2);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
+//                String name = title.getText().toString();
+//                String cat = category.getText().toString();
+////                String emailText = email.getText().toString();
+//                Favorite favorite = new Favorite.Builder()
+//                        .titleFav(name)
+//                        .imageFav("categoryFav")
+//                        .priceFav("15")
+//                        .sizeFav("15")
+//                        .categoryFav(cat)
+//                        .userId("emailText")
+//                        .build();
+//                Amplify.API.mutate(
+//                        ModelMutation.create(favorite),
+//                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
+//                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+//
+//                );
+//            }
+//        });
 
         title.setText(holder.product.getTitle());
         category.setText(holder.product.getCategoryId());

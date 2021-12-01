@@ -10,17 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".MyCartActivity"
+            android:exported="false" />
+        <activity
             android:name=".TrackActivity"
             android:exported="false" />
         <activity
             android:name=".OrderTracking"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".Accessories"
             android:exported="false" />
@@ -64,10 +61,10 @@
             android:name=".ConfirmationPage"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".Signin"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Signup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

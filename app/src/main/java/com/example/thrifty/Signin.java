@@ -86,7 +86,7 @@ public class Signin extends AppCompatActivity {
 
     public void configure() {
         try {
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+//            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());

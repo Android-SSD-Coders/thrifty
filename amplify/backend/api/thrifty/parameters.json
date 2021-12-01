@@ -1,12 +1,5 @@
 {
   "AppSyncApiName": "thrifty",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": [
-      "auththrifty21f6c364",
-      "Outputs.UserPoolId"
-    ]
-  },
-  "AuthModeLastUpdated": "2021-11-28T17:20:48.071Z"
+  "DynamoDBEnableServerSideEncryption": false
 }

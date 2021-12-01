@@ -43,20 +43,6 @@ public class ConfirmationPage extends AppCompatActivity {
             }
         });
 
-
-        try {
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-
-
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
