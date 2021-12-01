@@ -1,6 +1,5 @@
 package com.amplifyframework.datastore.generated.model;
 
-import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,28 +21,25 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Product type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Products", authRules = {
-  @AuthRule(allow = AuthStrategy.PRIVATE, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+  @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
-@Index(name = "byCategory", fields = {"categoryID"})
 public final class Product implements Model {
-  public static final QueryField ID = field("Product", "id");
-  public static final QueryField TITLE = field("Product", "title");
-  public static final QueryField DESCRIPTION = field("Product", "description");
-  public static final QueryField PRICE = field("Product", "price");
-  public static final QueryField SIZE = field("Product", "size");
-  public static final QueryField COLOR = field("Product", "color");
-  public static final QueryField CATEGORY_ID = field("Product", "categoryID");
-  public static final QueryField IMAGE = field("Product", "image");
+  public static final QueryField ID = field("id");
+  public static final QueryField TITLE = field("title");
+  public static final QueryField DESCRIPTION = field("description");
+  public static final QueryField PRICE = field("price");
+  public static final QueryField SIZE = field("size");
+  public static final QueryField COLOR = field("color");
+  public static final QueryField IMAGE = field("image");
+  public static final QueryField CATEGORY_ID = field("categoryID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String description;
   private final @ModelField(targetType="String", isRequired = true) String price;
   private final @ModelField(targetType="String", isRequired = true) String size;
   private final @ModelField(targetType="String", isRequired = true) String color;
-  private final @ModelField(targetType="ID") String categoryID;
   private final @ModelField(targetType="String", isRequired = true) String image;
-  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
-  private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
+  private final @ModelField(targetType="ID") String categoryID;
   public String getId() {
       return id;
   }
@@ -68,31 +64,23 @@ public final class Product implements Model {
       return color;
   }
   
-  public String getCategoryId() {
-      return categoryID;
-  }
-  
   public String getImage() {
       return image;
   }
   
-  public Temporal.DateTime getCreatedAt() {
-      return createdAt;
+  public String getCategoryId() {
+      return categoryID;
   }
   
-  public Temporal.DateTime getUpdatedAt() {
-      return updatedAt;
-  }
-  
-  private Product(String id, String title, String description, String price, String size, String color, String categoryID, String image) {
+  private Product(String id, String title, String description, String price, String size, String color, String image, String categoryID) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.price = price;
     this.size = size;
     this.color = color;
-    this.categoryID = categoryID;
     this.image = image;
+    this.categoryID = categoryID;
   }
   
   @Override
@@ -109,10 +97,8 @@ public final class Product implements Model {
               ObjectsCompat.equals(getPrice(), product.getPrice()) &&
               ObjectsCompat.equals(getSize(), product.getSize()) &&
               ObjectsCompat.equals(getColor(), product.getColor()) &&
-              ObjectsCompat.equals(getCategoryId(), product.getCategoryId()) &&
               ObjectsCompat.equals(getImage(), product.getImage()) &&
-              ObjectsCompat.equals(getCreatedAt(), product.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), product.getUpdatedAt());
+              ObjectsCompat.equals(getCategoryId(), product.getCategoryId());
       }
   }
   
@@ -125,10 +111,8 @@ public final class Product implements Model {
       .append(getPrice())
       .append(getSize())
       .append(getColor())
-      .append(getCategoryId())
       .append(getImage())
-      .append(getCreatedAt())
-      .append(getUpdatedAt())
+      .append(getCategoryId())
       .toString()
       .hashCode();
   }
@@ -143,10 +127,8 @@ public final class Product implements Model {
       .append("price=" + String.valueOf(getPrice()) + ", ")
       .append("size=" + String.valueOf(getSize()) + ", ")
       .append("color=" + String.valueOf(getColor()) + ", ")
-      .append("categoryID=" + String.valueOf(getCategoryId()) + ", ")
       .append("image=" + String.valueOf(getImage()) + ", ")
-      .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
+      .append("categoryID=" + String.valueOf(getCategoryId()))
       .append("}")
       .toString();
   }
@@ -162,8 +144,18 @@ public final class Product implements Model {
    * in a relationship.
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
+   * @throws IllegalArgumentException Checks that ID is in the proper format
    */
   public static Product justId(String id) {
+    try {
+      UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+    } catch (Exception exception) {
+      throw new IllegalArgumentException(
+              "Model IDs must be unique in the format of UUID. This method is for creating instances " +
+              "of an existing object with only its ID field for sending as a mutation parameter. When " +
+              "creating a new object, use the standard builder method and leave the ID field blank."
+      );
+    }
     return new Product(
       id,
       null,
@@ -183,8 +175,8 @@ public final class Product implements Model {
       price,
       size,
       color,
-      categoryID,
-      image);
+      image,
+      categoryID);
   }
   public interface TitleStep {
     DescriptionStep title(String title);
@@ -218,7 +210,7 @@ public final class Product implements Model {
 
   public interface BuildStep {
     Product build();
-    BuildStep id(String id);
+    BuildStep id(String id) throws IllegalArgumentException;
     BuildStep categoryId(String categoryId);
   }
   
@@ -243,8 +235,8 @@ public final class Product implements Model {
           price,
           size,
           color,
-          categoryID,
-          image);
+          image,
+          categoryID);
     }
     
     @Override
@@ -296,18 +288,29 @@ public final class Product implements Model {
     }
     
     /** 
+     * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
+     * This should only be set when referring to an already existing object.
      * @param id id
      * @return Current Builder instance, for fluent method chaining
+     * @throws IllegalArgumentException Checks that ID is in the proper format
      */
-    public BuildStep id(String id) {
+    public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
+        
+        try {
+            UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
+        } catch (Exception exception) {
+          throw new IllegalArgumentException("Model IDs must be unique in the format of UUID.",
+                    exception);
+        }
+        
         return this;
     }
   }
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String categoryId, String image) {
+    private CopyOfBuilder(String id, String title, String description, String price, String size, String color, String image, String categoryId) {
       super.id(id);
       super.title(title)
         .description(description)

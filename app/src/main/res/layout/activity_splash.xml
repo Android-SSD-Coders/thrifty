@@ -16,12 +16,12 @@
 <!--        android:layout_height="fill_parent"-->
 <!--        android:src="@drawable/splashgif"-->
 <!--        android:layout_gravity="center"/>-->
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/splashscreen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/splashgif"
-        android:scaleType="fitXY"/>
+<!--    <pl.droidsonroids.gif.GifImageView-->
+<!--        android:id="@+id/splashscreen"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:src="@drawable/splashgif"-->
+<!--        android:scaleType="fitXY"/>-->
 
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content"

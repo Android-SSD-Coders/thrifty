@@ -1,32 +1,27 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
         "thrifty": {
+            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
     },
     "auth": {
-        "thrifty21f6c364": {
+        "thrifty880b2640": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
-            "AppClientID": "string"
+            "AppClientID": "string",
+            "CreatedSNSRole": "string"
         }
     },
     "storage": {
-        "SSDStorage": {
+        "s3729634dc": {
             "BucketName": "string",
             "Region": "string"
-        }
-    },
-    "analytics": {
-        "ThriftyOWUjV": {
-            "Region": "string",
-            "Id": "string",
-            "appName": "string"
         }
     }
 }

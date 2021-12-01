@@ -1,7 +1,5 @@
 package com.example.thrifty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +7,12 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.amplifyframework.AmplifyException;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 
 public class Splash extends Activity {
 
@@ -30,7 +26,6 @@ public class Splash extends Activity {
         setContentView(R.layout.activity_splash);
 
         try {
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());
