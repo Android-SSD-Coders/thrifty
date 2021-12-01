@@ -10,16 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".About2"
+            android:exported="true" />
+        <activity
+            android:name=".Signin"
+            android:exported="true" />
+        <activity
             android:name=".Accessories"
             android:exported="false" />
         <activity
             android:name=".Profile"
             android:exported="true" />
-
         <activity
             android:name=".ProductView"
             android:exported="false" />
-
         <activity
             android:name=".Belts"
             android:exported="false" />
@@ -39,7 +43,6 @@
             android:name=".MenClothes"
             android:exported="false" />
         <activity
-
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
@@ -47,10 +50,9 @@
             android:exported="true" />
         <activity
             android:name=".Categories"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Splash"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Splash" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".ConfirmationPage"
             android:exported="false" />
@@ -58,7 +60,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".About1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
