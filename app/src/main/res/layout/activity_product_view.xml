@@ -6,22 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductView">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="426dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="-52dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="357dp"
+        app:srcCompat="@drawable/vector" />
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         android:layout_marginBottom="30dp"
+        android:background="?attr/colorPrimary"
         android:elevation="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="Item"
+            android:textColor="@color/grey"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            />
+            android:textStyle="bold" />
     </Toolbar>
 
     <Button
@@ -29,11 +45,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:text="Add To Cart"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/purple"
+        android:textColor="@color/white"
         android:elevation="5dp"
         android:padding="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:text="Add To Cart" />
 
     <Button
         android:id="@+id/wishlistBtn"
@@ -44,6 +62,8 @@
         android:layout_marginEnd="20dp"
         android:elevation="5dp"
         android:padding="10dp"
+        android:backgroundTint="@color/purple"
+        android:textColor="@color/white"
         android:text="Add To Wishlist"
         android:layout_marginBottom="10dp"/>
 
@@ -70,14 +90,15 @@
                     android:text="Title"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
                     android:layout_below="@id/txtTitle"
-                    android:textStyle="italic"
-                    android:textSize="16sp"/>
+                    android:text="Category"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
 
 
                 <TextView
@@ -98,74 +119,74 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/itemImage"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/itemImage"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginTop="5dp">-->
 
-                <RelativeLayout
-                    android:id="@+id/secondStarRelativeLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/thirdStarRelativeLayout">
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/secondStarRelativeLayout"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toEndOf="@+id/thirdStarRelativeLayout">-->
 
-                    <ImageView
-                        android:id="@+id/secondFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_24"
-                        android:visibility="gone" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/secondFilledStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_24"-->
+<!--                        android:visibility="gone" />-->
 
-                    <ImageView
-                        android:id="@+id/secondEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_border_24" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/secondEmptyStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
 
-                <RelativeLayout
-                    android:id="@+id/thirdStarRelativeLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/firstStarRelativeLayout">
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/thirdStarRelativeLayout"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toEndOf="@+id/firstStarRelativeLayout">-->
 
-                    <ImageView
-                        android:id="@+id/thirdFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_24"
-                        android:visibility="gone" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/thirdFilledStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_24"-->
+<!--                        android:visibility="gone" />-->
 
-                    <ImageView
-                        android:id="@+id/thirdEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_border_24" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/thirdEmptyStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
 
-                <RelativeLayout
-                    android:id="@+id/firstStarRelativeLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/firstStarRelativeLayout"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
 
-                    <ImageView
-                        android:id="@+id/firstFilledStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_24"
-                        android:visibility="gone" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/firstFilledStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_24"-->
+<!--                        android:visibility="gone" />-->
 
-                    <ImageView
-                        android:id="@+id/firstEmptyStar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_star_border_24" />
-                </RelativeLayout>
-            </RelativeLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/firstEmptyStar"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
+<!--                </RelativeLayout>-->
+<!--            </RelativeLayout>-->
 
             <TextView
                 android:id="@+id/description"
@@ -183,4 +204,14 @@
                 android:text="Some text" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:menu="@menu/bottom_nav_menu" />
 </RelativeLayout>

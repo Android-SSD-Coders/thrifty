@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         TextView price = holder.itemView.findViewById(R.id.price);
                 //        TextView email = holder.itemView.findViewById(R.id.editTextTextPersonName6);
 
-//        Button btn = holder.itemView.findViewById(R.id.button2);
+//        ImageView btn = holder.itemView.findViewById(R.id.button2);
 //        btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

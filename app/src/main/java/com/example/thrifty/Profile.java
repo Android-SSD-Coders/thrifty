@@ -65,9 +65,9 @@ public class Profile extends AppCompatActivity {
             email.setText(email1);
 
         String name = sharedPreferences.getString("name", "Your email");
-        TextView name1 = findViewById(R.id.name);
+//        TextView name1 = findViewById(R.id.name);
         TextView name2 = findViewById(R.id.username);
-        name1.setText(name);
+//        name1.setText(name);
         name2.setText(name);
 
         String phone = sharedPreferences.getString("phone", "Your phone number");

@@ -3,6 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/drawable-v24/edit_text_design.xml" value="0.1125" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/drawable-v24/ic_heart.xml" value="0.1125" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/drawable-v24/phone_filled.xml" value="0.1125" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/drawable/tab_color.xml" value="0.1125" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_about1.xml" value="0.18" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_about2.xml" value="0.17" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_accessories.xml" value="0.15" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_admin.xml" value="0.22" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_belts.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_categories.xml" value="0.25" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_confirmation_page.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_kids_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_men_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_product_view.xml" value="0.2" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_profile.xml" value="0.14" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_search.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_signin.xml" value="0.1" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_signup.xml" value="0.12" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_splash.xml" value="0.18" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_watches.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/activity_women_clothes.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/MY LAPTOP/Desktop/Final projectFinal/thrifty/app/src/main/res/layout/card_layout.xml" value="0.2" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/drawable-v24/ic_arrow_left.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/STUDENT/AndroidStudioProjects/Thrifty/app/src/main/res/layout/activity_accessories.xml" value="0.1859375" />
