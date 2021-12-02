@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thrifty">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,16 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".Wishlist"
+            android:exported="true" />
+        <activity
+            android:name=".Checkout"
+            android:exported="true" />
+        <activity
+            android:name=".Cart"
+            android:exported="true" />
+        <activity
+            android:name=".About2"
+            android:exported="true" />
+        <activity
+            android:name=".About1"
+            android:exported="true" />
+        <activity
+            android:name=".Favourate"
+            android:exported="true" />
+        <activity
             android:name=".Accessories"
             android:exported="false" />
         <activity
             android:name=".Profile"
             android:exported="true" />
-
         <activity
             android:name=".ProductView"
             android:exported="false" />
-
         <activity
             android:name=".Belts"
             android:exported="false" />
@@ -30,7 +48,7 @@
             android:name=".KidsClothes"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".Signin"
             android:exported="false" />
         <activity
             android:name=".WomenClothes"
@@ -39,7 +57,6 @@
             android:name=".MenClothes"
             android:exported="false" />
         <activity
-
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
@@ -48,9 +65,9 @@
         <activity
             android:name=".Categories"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Splash"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Signup"
+            android:exported="false" />
         <activity
             android:name=".ConfirmationPage"
             android:exported="false" />
@@ -58,7 +75,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,6 +83,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.anni.shareimage.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
     </application>
 
 </manifest>

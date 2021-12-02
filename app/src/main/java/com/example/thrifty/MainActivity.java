@@ -20,6 +20,8 @@ import android.view.View;
 import android.util.Log;
 import android.widget.Button;
 
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
@@ -85,15 +87,6 @@ public class MainActivity extends AppCompatActivity  {
         initRecyclerViews();
 
 
-
-        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Admin.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     public void bottomNav(){
@@ -101,12 +94,12 @@ public class MainActivity extends AppCompatActivity  {
         bottomNavigationView.setSelectedItemId(R.id.homeNav);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
@@ -119,6 +112,18 @@ public class MainActivity extends AppCompatActivity  {
 
         profile.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
@@ -208,13 +213,6 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        Button stopButton = (Button) findViewById(R.id.admin);
-        stopButton.setVisibility(View.GONE);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("jamalwari2@gmail.com")){
-            stopButton.setVisibility(View.VISIBLE);
-        }
     }
 
 }

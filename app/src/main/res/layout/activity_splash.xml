@@ -6,25 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/white"
+
     tools:context=".Splash"
-    tools:ignore="Orientation">
+    tools:ignore="Orientation"
+    android:background="@color/light_blue"
+    >
 
 
-<!--    <ImageView android:id="@+id/splashscreen" -->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="fill_parent"-->
-<!--        android:src="@drawable/splashgif"-->
-<!--        android:layout_gravity="center"/>-->
-<!--    <pl.droidsonroids.gif.GifImageView-->
-<!--        android:id="@+id/splashscreen"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:src="@drawable/splashgif"-->
-<!--        android:scaleType="fitXY"/>-->
+    <!--    <ImageView android:id="@+id/splashscreen" -->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="fill_parent"-->
+    <!--        android:src="@drawable/splashgif"-->
+    <!--        android:layout_gravity="center"/>-->
+    <!--    <pl.droidsonroids.gif.GifImageView-->
+    <!--        android:id="@+id/splashscreen"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:src="@drawable/splashgif"-->
+    <!--        android:scaleType="fitXY"/>-->
 
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World, splash"/>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="312dp"
+        android:layout_height="176dp"
+        android:layout_weight="1"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="40dp"/>
 
 </LinearLayout>
