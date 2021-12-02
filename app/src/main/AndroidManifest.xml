@@ -10,10 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".Checkout"
+            android:exported="true" />
+        <activity
+            android:name=".Cart"
+            android:exported="true" />
+        <activity
+            android:name=".WishList"
+            android:exported="true" />
+        <activity
             android:name=".About2"
             android:exported="true" />
         <activity
-            android:name=".Signin"
+            android:name=".About1"
             android:exported="true" />
         <activity
             android:name=".Accessories"
@@ -34,7 +43,7 @@
             android:name=".KidsClothes"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".Signin"
             android:exported="false" />
         <activity
             android:name=".WomenClothes"
@@ -60,7 +69,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".About1"
+            android:name=".Signup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
