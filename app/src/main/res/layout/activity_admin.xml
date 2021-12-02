@@ -39,15 +39,15 @@
         android:id="@+id/addproduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add products"
         android:backgroundTint="@color/purple"
+        android:text="add products"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.926" />
+        app:layout_constraintVertical_bias="0.819" />
 
     <TextView
         android:id="@+id/productname"
@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.113" />
 
     <TextView
         android:id="@+id/description"
@@ -71,7 +71,8 @@
         app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productname"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.099" />
+
 
     <TextView
         android:id="@+id/price"
@@ -83,8 +84,7 @@
         app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.158" />
-
+        app:layout_constraintVertical_bias="0.112" />
 
     <TextView
         android:id="@+id/category"
@@ -96,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.264" />
 
     <EditText
         android:id="@+id/nametext"
@@ -110,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <EditText
         android:id="@+id/descriptiontext"
@@ -124,7 +124,8 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nametext"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.08" />
+
 
     <EditText
         android:id="@+id/pricetext"
@@ -138,8 +139,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptiontext"
-        app:layout_constraintVertical_bias="0.166" />
-
+        app:layout_constraintVertical_bias="0.095" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -151,7 +151,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <TextView
         android:id="@+id/size"
@@ -163,7 +163,7 @@
         app:layout_constraintHorizontal_bias="0.199"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.492" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <Spinner
         android:id="@+id/sizespinner"
@@ -175,7 +175,7 @@
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.543" />
 
     <TextView
         android:id="@+id/color"
@@ -184,24 +184,25 @@
         android:text="color"
         app:layout_constraintBottom_toTopOf="@+id/addproduct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizespinner"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.083" />
 
     <EditText
         android:id="@+id/colortext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="color"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizespinner"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintVertical_bias="0.132" />
+
 
     <Button
         android:id="@+id/upload"
@@ -211,9 +212,21 @@
         android:text="upload image"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toStartOf="@+id/addproduct"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/colortext"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.333" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

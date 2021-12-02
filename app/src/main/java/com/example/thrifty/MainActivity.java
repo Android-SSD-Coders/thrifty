@@ -86,13 +86,13 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Admin.class);
-                startActivity(intent);
-            }
-        });
+//        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, Admin.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -208,13 +208,13 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        Button stopButton = (Button) findViewById(R.id.admin);
-        stopButton.setVisibility(View.GONE);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("jamalwari2@gmail.com")){
-            stopButton.setVisibility(View.VISIBLE);
-        }
+//        Button stopButton = (Button) findViewById(R.id.admin);
+//        stopButton.setVisibility(View.GONE);
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+//        String email1 = sharedPreferences.getString("email", "Your email");
+//        if (email1.equals("jamalwari2@gmail.com")){
+//            stopButton.setVisibility(View.VISIBLE);
+//        }
     }
 
 }
