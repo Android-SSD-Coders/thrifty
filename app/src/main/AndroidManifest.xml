@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
+            android:name=".Team"
+            android:exported="false" />
+        <activity
             android:name=".TrackActivity"
             android:exported="false" />
         <activity

@@ -1,0 +1,33 @@
+type Favorite @model @auth(rules: [{allow: private}]) @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  titleFav: String!
+  imageFav: String!
+  priceFav: String!
+  sizeFav: String!
+  categoryFav: String!
+  userID: ID
+}
+
+type User @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  email: String!
+  Favorite: [Favorite] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type Category @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  Products: [Product] @connection(keyName: "byCategory", fields: ["id"])
+}
+
+type Product @model @auth(rules: [{allow: private}]) @key(name: "byCategory", fields: ["categoryID"]) {
+  id: ID!
+  title: String!
+  description: String!
+  price: String!
+  size: String!
+  color: String!
+  categoryID: ID
+  image: String!
+}
+ 
