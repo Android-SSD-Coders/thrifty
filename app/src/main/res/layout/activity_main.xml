@@ -90,6 +90,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp" />
+            <!-- Here we will attach our image to share -->
+            <!-- Here we will attach our image to share -->
+
 
 
         </RelativeLayout>
@@ -136,14 +139,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.975" />
 
-    <Button
-        android:id="@+id/map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="19dp"
-        android:text="Map" />
+<!--    <Button-->
+<!--        android:id="@+id/map"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="95dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="Button" />-->
 
 </RelativeLayout>

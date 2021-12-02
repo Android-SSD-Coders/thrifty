@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 35,
+      "apiKeyExpirationDate": "2022-01-06T02:02:46.260Z",
+      "keyDescription": "ssdmh"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "apiName": "thrifty2",
+    "gqlSchemaPath": "/mnt/c/Users/STUDENT/AndroidStudioProjects/thrifty/amplify/backend/api/thrifty2/schema.graphql",
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
+  }
+}
