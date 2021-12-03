@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         cart.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });

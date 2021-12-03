@@ -112,8 +112,8 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.profile);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
@@ -135,6 +135,17 @@ public class Profile extends AppCompatActivity {
             startActivity(intent);
         });
 
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 
 

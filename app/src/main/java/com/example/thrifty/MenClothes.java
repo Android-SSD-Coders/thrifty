@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,8 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.example.thrifty.adapters.MenClothesAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,7 @@ public class MenClothes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_men_clothes);
-
+bottomNav();
         categorizedRecView = findViewById(R.id.categorizedRecView);
         categorizedRecView.setAdapter(menClothesAdapter);
         categorizedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
@@ -54,5 +57,43 @@ public class MenClothes extends AppCompatActivity {
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
 
+    }
+
+    public void bottomNav(){
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView profile = findViewById(R.id.profile);
+
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        profile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 }
