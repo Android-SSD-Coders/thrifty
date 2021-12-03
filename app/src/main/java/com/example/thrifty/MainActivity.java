@@ -21,6 +21,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toolbar;
 
@@ -87,6 +88,18 @@ public class MainActivity extends AppCompatActivity  {
         initRecyclerViews();
 
 
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("not complemte", error.toString())
+                );
+                Intent intent = new Intent(MainActivity.this, Signin.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void bottomNav(){

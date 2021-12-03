@@ -59,9 +59,9 @@ public class Favourate extends AppCompatActivity {
         categoryTxt.setText(category);
         descriptionTxt.setText(description);
 
-        String url = intent.getExtras().getString("image");
-        ImageView image = findViewById(R.id.itemImage);
-        Log.i("imagview", url);
-        Picasso.get().load(url).into(image);
+//        String url = intent.getExtras().getString("image");
+//        ImageView image = findViewById(R.id.itemImage);
+//        Log.i("imagview", url);
+//        Picasso.get().load(url).into(image);
     }
 }
