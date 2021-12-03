@@ -53,6 +53,9 @@ public class ProductView extends AppCompatActivity {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
+
+
+
         Intent intent = getIntent();
         String title = intent.getStringExtra("Title");
         String price = intent.getStringExtra("price");
