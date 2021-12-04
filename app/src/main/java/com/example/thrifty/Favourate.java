@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -15,6 +16,8 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 public class Favourate extends AppCompatActivity {
@@ -22,7 +25,12 @@ public class Favourate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_view);
+        setContentView(R.layout.activity_favourate);
+
+
+        bottomNav();
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
         toolbar.setNavigationOnClickListener(v -> {
@@ -42,26 +50,60 @@ public class Favourate extends AppCompatActivity {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("Title");
-        String price = intent.getStringExtra("price");
-        String category = intent.getStringExtra("category");
-        String description = intent.getStringExtra("description");
 
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("not complemte", error.toString())
+                );
+                Intent intent = new Intent(Favourate.this, Signin.class);
+                startActivity(intent);
+            }
+        });
 
-        TextView textView = findViewById(R.id.txtTitle);
-        TextView priceTxt = findViewById(R.id.txtPrice);
-        TextView categoryTxt = findViewById(R.id.category);
-        TextView descriptionTxt = findViewById(R.id.descriptionText);
-
-        textView.setText(title);
-        priceTxt.setText(price);
-        categoryTxt.setText(category);
-        descriptionTxt.setText(description);
-
-        String url = intent.getExtras().getString("image");
-        ImageView image = findViewById(R.id.itemImage);
-        Log.i("imagview", url);
-        Picasso.get().load(url).into(image);
     }
+
+    public void bottomNav(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.wishlist);
+        BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
+        BottomNavigationItemView search = findViewById(R.id.search);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView profile = findViewById(R.id.profile);
+
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Categories.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        homeNav.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        profile.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+    }
+
 }

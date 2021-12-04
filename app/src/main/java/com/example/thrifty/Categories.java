@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
+import com.amplifyframework.core.Amplify;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -63,6 +66,29 @@ public class Categories extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("not complemte", error.toString())
+                );
+                Intent intent = new Intent(Categories.this, Signin.class);
+                startActivity(intent);
+            }
+        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent   = new Intent(Categories.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     public void bottomNav(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -70,8 +96,8 @@ public class Categories extends AppCompatActivity {
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
         BottomNavigationItemView profile = findViewById(R.id.profile);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
 
         search.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Categories.class);
@@ -87,6 +113,20 @@ public class Categories extends AppCompatActivity {
 
         profile.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Profile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });

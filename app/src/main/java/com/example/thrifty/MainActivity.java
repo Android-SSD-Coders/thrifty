@@ -23,6 +23,7 @@ import android.view.View;
 
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -43,6 +44,8 @@ import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Product;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.thrifty.adapters.NewItemsAdapter;
+import com.example.thrifty.adapters.PopularItemsAdapter;
+import com.example.thrifty.adapters.SuggestedItemsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -63,6 +66,9 @@ public class MainActivity extends AppCompatActivity  {
     private final List<Product> categorizedProducts = new ArrayList<>();
 
     RecyclerView newItemRecView, suggestedRecView, popularRecView;
+    NewItemsAdapter newItemsAdapter;
+    SuggestedItemsAdapter suggestedItemsAdapter;
+    PopularItemsAdapter popularItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,30 +80,28 @@ public class MainActivity extends AppCompatActivity  {
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
         createNotificationChannel();
-    }
 
-    private void configure() {
-        try {
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-    }
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("Signed out Failed", error.toString())
+                );
+                Intent intent = new Intent(MainActivity.this, Signin.class);
+                startActivity(intent);
+            }
+        });
 
+    }
     public void bottomNav(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.homeNav);
         BottomNavigationItemView homeNav = findViewById(R.id.homeNav);
         BottomNavigationItemView search = findViewById(R.id.search);
-//        BottomNavigationItemView cart = findViewById(R.id.cart);
-//        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
+        BottomNavigationItemView cart = findViewById(R.id.cart);
+        BottomNavigationItemView wishlist = findViewById(R.id.wishlist);
         BottomNavigationItemView profile = findViewById(R.id.profile);
 
         search.setOnClickListener(view -> {
@@ -118,6 +122,17 @@ public class MainActivity extends AppCompatActivity  {
             startActivity(intent);
         });
 
+        wishlist.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Favourate.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
+
+        cart.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), Cart.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 
     private void initRecyclerViews(){
@@ -126,7 +141,11 @@ public class MainActivity extends AppCompatActivity  {
         popularRecView = findViewById(R.id.popularRecView);
 
         newItemRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
+
+        suggestedRecView.setAdapter(suggestedItemsAdapter);
         suggestedRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL,false));
+
+        popularRecView.setAdapter(popularItemsAdapter);
         popularRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),RecyclerView.HORIZONTAL,false));
 
         newItemRecView.setAdapter(new NewItemsAdapter(newProducts , MainActivity.this));
@@ -167,7 +186,7 @@ public class MainActivity extends AppCompatActivity  {
                         newProducts.add(product);
                     }
                     handler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+                }, error -> Log.e("ThriftyApp ", "Query failure", error)
         );
 
         Amplify.API.query(
@@ -177,7 +196,7 @@ public class MainActivity extends AppCompatActivity  {
                         popularProducts.add(product);
                     }
                     popularHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+                }, error -> Log.e("ThriftyApp", "Query failure", error)
         );
 
         Amplify.API.query(
@@ -187,7 +206,7 @@ public class MainActivity extends AppCompatActivity  {
                         suggestProducts.add(product);
                     }
                     suggestHandler.sendEmptyMessage(1);
-                }, error -> Log.e("MyAmplifyApp", "Query failure", error)
+                }, error -> Log.e("ThriftyApp", "Query failure", error)
         );
     }
     public static PinpointManager getPinpointManager(Context applicationContext) {
@@ -250,4 +269,19 @@ public class MainActivity extends AppCompatActivity  {
         Log.d(TAG, "Assigned user ID " + endpointProfileUser.getUserId() +
                 " to endpoint " + endpointProfile.getEndpointId());
     }
+    private void configure() {
+        try {
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+    }
+
 }

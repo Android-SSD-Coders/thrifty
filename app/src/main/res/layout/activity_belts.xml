@@ -86,10 +86,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
 
-        app:backgroundTint="@color/light_blue"
-        app:itemIconTint="@drawable/tab_color"
-        app:itemTextColor="@drawable/tab_color" android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
         app:menu="@menu/bottom_nav_menu" />
+
 </RelativeLayout>

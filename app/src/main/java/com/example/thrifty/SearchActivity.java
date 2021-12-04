@@ -5,10 +5,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
+import com.amplifyframework.core.Amplify;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +29,21 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         initViews();
         bottomNav();
+
+
+
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("not complemte", error.toString())
+                );
+                Intent intent = new Intent(SearchActivity.this, Signin.class);
+                startActivity(intent);
+            }
+        });
     }
     public void bottomNav(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);

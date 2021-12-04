@@ -24,18 +24,7 @@ public class Splash extends Activity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash);
-
-        try {
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-
+        config();
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){
@@ -47,5 +36,17 @@ public class Splash extends Activity {
                 Splash.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+    }
+    public void config(){
+        try {
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+            Log.i("ThriftyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("ThriftyApp", "Could not initialize Amplify", error);
+        }
     }
 }

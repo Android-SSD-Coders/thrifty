@@ -3,11 +3,14 @@ package com.example.thrifty;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +56,9 @@ public class ProductView extends AppCompatActivity {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 
+
+
+
         Intent intent = getIntent();
         String title = intent.getStringExtra("Title");
         String price = intent.getStringExtra("price");
@@ -84,6 +90,30 @@ public class ProductView extends AppCompatActivity {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                 shareImageandText(bitmap);
+            }
+        });
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Button addtocart = findViewById(R.id.addToCart);
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putString("productname",textView.getText().toString());
+                editor.apply();
+
+                editor.putString("productprice",priceTxt.getText().toString());
+                editor.apply();
+
+
+                editor.putString("category",categoryTxt.getText().toString());
+                editor.apply();
+
+
+
+                Intent intent = new Intent(ProductView.this, Cart.class);
+                startActivity(intent);
             }
         });
     }
