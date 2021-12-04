@@ -3,16 +3,27 @@ package com.example.thrifty;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
+import com.squareup.picasso.Picasso;
 
 public class Cart extends AppCompatActivity {
+    LinearLayout inc;
 
+    TextView t1, t2, t3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,47 @@ public class Cart extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        setContentView(R.layout.activity_cart);
+
+        inc = findViewById(R.id.inc);
+        t1 = findViewById(R.id.t1);
+        t2 = findViewById(R.id.t2);
+        t3 = findViewById(R.id.t3);
+
+
+        t1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inc(false);
+            }
+        });
+
+        t3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inc(true);
+            }
+        });
+    }
+
+    private void inc(Boolean x){
+        int y = Integer.parseInt(t2.getText().toString());
+        if(x){
+            y++;
+            t2.setText(String.valueOf(y));
+        }else {
+            y--;
+            if(y == 0){
+                t2.setText("1");
+            }else {
+                t2.setText(String.valueOf(y));
+            }
+        }
+
+        Toast.makeText(this, t2.getText(), Toast.LENGTH_SHORT).show();
+
 
     }
         public void bottomNav(){
@@ -81,4 +133,23 @@ public class Cart extends AppCompatActivity {
             });
         }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Cart.this);
+        String name = sharedPreferences.getString("productname", "");
+        TextView name2 = findViewById(R.id.productname);
+        name2.setText(name);
+        String price = sharedPreferences.getString("productprice", "");
+        TextView price2 = findViewById(R.id.price);
+        TextView price3 = findViewById(R.id.textView3);
+        price2.setText(price);
+        price3.setText(price);
+
+        String category = sharedPreferences.getString("category", "");
+        TextView category2 = findViewById(R.id.categoryfrag);
+        category2.setText(category);
+
+    }
 }
