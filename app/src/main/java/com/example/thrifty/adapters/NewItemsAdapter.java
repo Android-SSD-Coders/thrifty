@@ -25,6 +25,7 @@ import com.amplifyframework.datastore.generated.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.thrifty.Cart;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
@@ -76,6 +77,19 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
                 view.getContext().startActivity(goToDetails);
             }
         });
+
+//        holder.itemView.findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), Cart.class);
+//                intent.putExtra("Title",products.get(position).getTitle());
+//                intent.putExtra("category",products.get(position).getCategoryId());
+//                intent.putExtra("price",products.get(position).getPrice());
+//                intent.putExtra("image",products.get(position).getImage());
+//                intent.putExtra("description",products.get(position).getDescription());
+//                view.getContext().startActivity(intent);
+//            }
+//        });
 
 
 
