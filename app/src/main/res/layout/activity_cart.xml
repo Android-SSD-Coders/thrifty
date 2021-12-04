@@ -60,6 +60,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRecycler"
         android:layout_width="387dp"
         android:layout_height="449dp"
         app:layout_constraintBottom_toBottomOf="parent"

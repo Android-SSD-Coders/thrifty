@@ -19,9 +19,12 @@ import android.widget.Toolbar;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Favorite;
+import com.amplifyframework.datastore.generated.model.UserCart;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.squareup.picasso.Picasso;
 
@@ -77,6 +80,38 @@ public class ProductView extends AppCompatActivity {
 
         Button share = findViewById(R.id.share);
         ImageView imageView = findViewById(R.id.itemImage);
+
+
+        findViewById(R.id.addToCart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                UserCart userCart = UserCart.builder()
+//                        .productId()
+//                        .userId()
+//                        .build();
+
+                String titlePro = textView.getText().toString();
+                String pricePro = priceTxt.getText().toString();
+                String catPro = categoryTxt.getText().toString();
+                String desPro = descriptionTxt.getText().toString();
+
+                Favorite favorite = new Favorite.Builder()
+                        .titleFav(titlePro)
+                        .imageFav("")
+                        .priceFav(pricePro)
+                        .sizeFav("")
+                        .categoryFav(catPro)
+                        .build();
+
+                Amplify.API.mutate(
+                        ModelMutation.create(favorite),
+                        response->Log.i("Good Result","There is some progress")
+                        ,error->{}
+                );
+                Intent intent1 = new Intent(ProductView.this, Cart.class);
+                startActivity(intent1);
+            }
+        });
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
