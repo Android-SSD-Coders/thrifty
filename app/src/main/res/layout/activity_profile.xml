@@ -40,6 +40,14 @@
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_exit_to_app_24" />
     </Toolbar>
 
     <ImageView

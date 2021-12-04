@@ -6,141 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".Favourate">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"/>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="426dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector" />
 
-        <RelativeLayout
-            android:id="@+id/firstRelativeLayout"
-            android:layout_width="match_parent"
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:text="Wish List"
 
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            android:textColor="@color/grey"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtTitle"
-                android:text="Category"
-                android:textSize="16sp"
-                android:textStyle="italic" />
-
-
-            <TextView
-                android:id="@+id/txtPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="155 $"
-                android:textColor="@color/black"
-                android:textStyle="italic" />
-        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/itemImage"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-            android:layout_below="@id/firstRelativeLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp" />
+            android:id="@+id/logout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_exit_to_app_24" />
+    </Toolbar>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/itemImage"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp">
 
-            <RelativeLayout
-                android:id="@+id/secondStarRelativeLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/thirdStarRelativeLayout">
 
-                <ImageView
-                    android:id="@+id/secondFilledStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_24"
-                    android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/secondEmptyStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_border_24" />
 
-            </RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/light_blue"
+        app:itemIconTint="@drawable/tab_color"
+        app:itemTextColor="@drawable/tab_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
-            <RelativeLayout
-                android:id="@+id/thirdStarRelativeLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/firstStarRelativeLayout">
 
-                <ImageView
-                    android:id="@+id/thirdFilledStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_24"
-                    android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/thirdEmptyStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_border_24" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/firstStarRelativeLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/firstFilledStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_24"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/firstEmptyStar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_star_border_24" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/itemImage"
-            android:text="Description" />
-
-        <TextView
-            android:id="@+id/descriptionText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:layout_marginTop="10dp"
-            android:text="Some text" />
-    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
