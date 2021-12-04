@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Item"
+            android:text="@string/item"
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
         android:backgroundTint="@color/purple"
         android:elevation="5dp"
         android:padding="10dp"
-        android:text="Add To Cart"
+        android:text="@string/add_to_cart"
         android:textColor="@color/white" />
 
     <Button
@@ -64,7 +64,7 @@
         android:backgroundTint="@color/purple"
         android:elevation="5dp"
         android:padding="10dp"
-        android:text="share this product"
+        android:text="@string/share_this_product"
         android:textColor="@color/white" />
 
     <androidx.core.widget.NestedScrollView
@@ -87,7 +87,7 @@
                     android:id="@+id/txtTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtTitle"
-                    android:text="Category"
+                    android:text="@string/category"
                     android:textSize="16sp"
                     android:textStyle="italic" />
 
@@ -119,81 +119,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
 
-            <!--            <RelativeLayout-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_below="@id/itemImage"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_marginTop="5dp">-->
-
-            <!--                <RelativeLayout-->
-            <!--                    android:id="@+id/secondStarRelativeLayout"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_toEndOf="@+id/thirdStarRelativeLayout">-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/secondFilledStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_24"-->
-            <!--                        android:visibility="gone" />-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/secondEmptyStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
-
-            <!--                </RelativeLayout>-->
-
-            <!--                <RelativeLayout-->
-            <!--                    android:id="@+id/thirdStarRelativeLayout"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_toEndOf="@+id/firstStarRelativeLayout">-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/thirdFilledStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_24"-->
-            <!--                        android:visibility="gone" />-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/thirdEmptyStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
-
-            <!--                </RelativeLayout>-->
-
-            <!--                <RelativeLayout-->
-            <!--                    android:id="@+id/firstStarRelativeLayout"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content">-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/firstFilledStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_24"-->
-            <!--                        android:visibility="gone" />-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/firstEmptyStar"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:src="@drawable/ic_baseline_star_border_24" />-->
-            <!--                </RelativeLayout>-->
-            <!--            </RelativeLayout>-->
-
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemImage"
-                android:text="Description" />
+                android:text="@string/description" />
 
             <TextView
                 android:id="@+id/descriptionText"
@@ -201,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/description"
                 android:layout_marginTop="10dp"
-                android:text="Some text" />
+                android:text="@string/some_text" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -33,9 +33,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save your money!"
+        android:text="@string/save_your_money"
 
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
         app:cornerRadius="10dp"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        android:textSize="14dp"
-        android:text="Get Started!"
+        android:textSize="14sp"
+        android:text="@string/get_started"
 
         android:textColor="@color/white"
 

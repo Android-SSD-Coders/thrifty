@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cart"
+            android:text="@string/cart"
 
             android:textColor="@color/grey"
             android:textSize="20sp"
@@ -190,8 +190,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="156dp"
-        android:text="price for each one:"
-        android:textSize="20dp"
+        android:text="@string/price_for_each_one"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -202,7 +202,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="156dp"
         android:text="30$"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -214,7 +214,7 @@
         android:layout_marginBottom="92dp"
         android:backgroundTint="@color/pink"
 
-        android:text="Checkout"
+        android:text="@string/checkout"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

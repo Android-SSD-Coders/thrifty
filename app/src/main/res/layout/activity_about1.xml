@@ -33,10 +33,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy second hand
-clothes online!"
+        android:text="@string/buy_second_hand_clothes_online"
 
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,8 +52,8 @@ clothes online!"
 
         android:paddingLeft="80dp"
         android:paddingRight="80dp"
-        android:textSize="14dp"
-        android:text="Next"
+        android:textSize="14sp"
+        android:text="@string/next"
         android:textColor="@color/white"
 
 

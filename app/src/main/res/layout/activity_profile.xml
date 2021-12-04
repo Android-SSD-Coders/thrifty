@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
 
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -93,8 +93,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="339dp"
 
-        android:text="SSD Coders"
-        android:textSize="22dp" />
+        android:text="@string/ssd_coders"
+        android:textSize="22sp" />
 
 
 
@@ -108,8 +108,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="55dp"
         android:layout_marginBottom="279dp"
-        android:text="Email"
-        android:textSize="15dp" />
+        android:text="@string/email"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -120,8 +120,8 @@
         android:layout_marginStart="55dp"
         android:layout_marginBottom="203dp"
 
-        android:text="Phone number"
-        android:textSize="15dp" />
+        android:text="@string/phone_number"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/phone"
@@ -131,7 +131,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="55dp"
         android:layout_marginBottom="178dp"
-        android:text="962 7999999" />
+        android:text="@string/_962_7999999" />
 
     <TextView
         android:id="@+id/email"
@@ -141,7 +141,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="55dp"
         android:layout_marginBottom="254dp"
-        android:text="ssdcoders@gmail.com" />
+        android:text="@string/ssdcoders_gmail_com" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -174,7 +174,7 @@
         android:layout_marginEnd="290dp"
         android:layout_marginBottom="98dp"
         android:backgroundTint="@color/purple"
-        android:text="Track Order"
+        android:text="@string/track_order"
         android:textColor="@color/white" />
 
     <Button
@@ -186,7 +186,7 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="98dp"
         android:backgroundTint="@color/purple"
-        android:text="Track Order"
+        android:text="@string/track_order"
         android:textColor="@color/white" />
 
     <Button
@@ -197,7 +197,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="91dp"
         android:backgroundTint="@color/purple"
-        android:text="Add product"
+        android:text="@string/add_product"
         android:textColor="@color/white" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

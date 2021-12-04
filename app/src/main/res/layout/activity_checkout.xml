@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Checkout"
+            android:text="@string/checkout"
 
             android:textColor="@color/grey"
             android:textSize="20sp"
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="244dp"
-        android:text="Total"
-        android:textSize="20dp"
+        android:text="@string/total"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,7 +57,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="244dp"
         android:text="30$"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -68,7 +68,7 @@
         android:layout_height="49dp"
         android:layout_marginBottom="152dp"
         android:backgroundTint="@color/pink"
-        android:text="Pay Now"
+        android:text="@string/pay_now"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,8 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="84dp"
-        android:text="Choose payment method"
-        android:textSize="20dp"
+        android:text="@string/choose_payment_method"
+        android:textSize="20sp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -107,8 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="136dp"
-        android:text="Cash on delivery "
-        android:textSize="17dp"
+        android:text="@string/cash_on_delivery"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,8 +118,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="232dp"
-        android:text="Credit card "
-        android:textSize="17dp"
+        android:text="@string/credit_card"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,7 +131,7 @@
         android:layout_marginTop="280dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Card Number"
+        android:hint="@string/card_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,7 +141,7 @@
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="Expiry date"
+        android:hint="@string/expiry_date"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
