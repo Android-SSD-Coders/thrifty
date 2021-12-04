@@ -29,19 +29,8 @@ public class Cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+counter();
         bottomNav();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(Cart.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         ImageView logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +45,18 @@ public class Cart extends AppCompatActivity {
             }
         });
 
+        bottomNav();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Cart.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         Button button1 = findViewById(R.id.button4);
@@ -68,44 +69,6 @@ public class Cart extends AppCompatActivity {
         });
 
 
-        setContentView(R.layout.activity_cart);
-
-        inc = findViewById(R.id.inc);
-        t1 = findViewById(R.id.t1);
-        t2 = findViewById(R.id.t2);
-        t3 = findViewById(R.id.t3);
-
-
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inc(false);
-            }
-        });
-
-        t3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inc(true);
-            }
-        });
-    }
-
-    private void inc(Boolean x){
-        int y = Integer.parseInt(t2.getText().toString());
-        if(x){
-            y++;
-            t2.setText(String.valueOf(y));
-        }else {
-            y--;
-            if(y == 0){
-                t2.setText("1");
-            }else {
-                t2.setText(String.valueOf(y));
-            }
-        }
-
-        Toast.makeText(this, t2.getText(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -149,6 +112,45 @@ public class Cart extends AppCompatActivity {
             });
         }
 
+
+        public void counter(){
+            inc = findViewById(R.id.inc);
+            t1 = findViewById(R.id.t1);
+            t2 = findViewById(R.id.t2);
+            t3 = findViewById(R.id.t3);
+
+
+            t1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inc(false);
+                }
+            });
+
+            t3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inc(true);
+                }
+            });
+        }
+
+    private void inc(Boolean x){
+        int y = Integer.parseInt(t2.getText().toString());
+        if(x){
+            y++;
+            t2.setText(String.valueOf(y));
+        }else {
+            y--;
+            if(y == 0){
+                t2.setText("1");
+            }else {
+                t2.setText(String.valueOf(y));
+            }
+        }
+
+        Toast.makeText(this, "number of product => "+t2.getText(), Toast.LENGTH_SHORT).show();
+        }
 
     @Override
     protected void onResume() {
