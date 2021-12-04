@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thrifty">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Thrifty">
         <activity
-            android:name=".Team"
-            android:exported="false" />
+            android:name=".Wishlist"
+            android:exported="true" />
         <activity
-            android:name=".TrackActivity"
-            android:exported="false" />
+            android:name=".Checkout"
+            android:exported="true" />
         <activity
-            android:name=".OrderTracking"
-            android:exported="true">
-        </activity>
+            android:name=".Cart"
+            android:exported="true" />
+        <activity
+            android:name=".About2"
+            android:exported="true" />
+        <activity
+            android:name=".About1"
+            android:exported="true" />
+        <activity
+            android:name=".Favourate"
+            android:exported="true" />
         <activity
             android:name=".Accessories"
             android:exported="false" />
@@ -38,7 +48,7 @@
             android:name=".KidsClothes"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Signin"
             android:exported="false" />
         <activity
             android:name=".WomenClothes"
@@ -56,16 +66,16 @@
             android:name=".Categories"
             android:exported="false" />
         <activity
-            android:name=".Splash"
+            android:name=".Signup"
             android:exported="false" />
         <activity
             android:name=".ConfirmationPage"
             android:exported="false" />
         <activity
-            android:name=".Signup"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Signin"
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

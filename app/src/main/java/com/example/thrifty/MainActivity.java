@@ -74,15 +74,6 @@ public class MainActivity extends AppCompatActivity  {
         getPinpointManager(getApplicationContext());
         assignUserIdToEndpoint();
         createNotificationChannel();
-
-        findViewById(R.id.admin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Admin.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     private void configure() {
@@ -198,18 +189,6 @@ public class MainActivity extends AppCompatActivity  {
                     suggestHandler.sendEmptyMessage(1);
                 }, error -> Log.e("MyAmplifyApp", "Query failure", error)
         );
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Button stopButton = findViewById(R.id.admin);
-        stopButton.setVisibility(View.GONE);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String email1 = sharedPreferences.getString("email", "Your email");
-        if (email1.equals("aboud.coding@gmail.com")){
-            stopButton.setVisibility(View.VISIBLE);
-        }
     }
     public static PinpointManager getPinpointManager(Context applicationContext) {
         if (pinpointManager == null) {

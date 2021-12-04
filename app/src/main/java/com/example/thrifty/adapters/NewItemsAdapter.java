@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +28,7 @@ import java.util.List;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
-
-
+//import com.squareup.picasso.Picasso;
 
 
 public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
@@ -52,37 +52,17 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         TextView title = holder.itemView.findViewById(R.id.titlefrag1);
         TextView category = holder.itemView.findViewById(R.id.categoryfrag);
         TextView price = holder.itemView.findViewById(R.id.price);
+        TextView des = holder.itemView.findViewById(R.id.des);
+        ImageView image = holder.itemView.findViewById(R.id.idIVCourseImage);
                 //        TextView email = holder.itemView.findViewById(R.id.editTextTextPersonName6);
 
-        Button btn = holder.itemView.findViewById(R.id.button2);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), "fav Button Clicked", Toast.LENGTH_LONG).show();
-                String name = title.getText().toString();
-                String cat = category.getText().toString();
-//                String emailText = email.getText().toString();
-                Favorite favorite = new Favorite.Builder()
-                        .titleFav(name)
-                        .imageFav("categoryFav")
-                        .priceFav("15")
-                        .sizeFav("15")
-                        .categoryFav(cat)
-                        .userId("emailText")
-                        .build();
-                Amplify.API.mutate(
-                        ModelMutation.create(favorite),
-                        response -> Log.i("MyAmplifyApp", "Added Todo with id: " + response.getData().getId()),
-                        error -> Log.e("MyAmplifyApp", "Create failed", error)
 
-                );
-            }
-        });
 
         title.setText(holder.product.getTitle());
         category.setText(holder.product.getCategoryId());
         price.setText(holder.product.getPrice());
-
+        des.setText(holder.product.getDescription());
+//        Picasso.get().load(holder.product.getImage()).into(image);
 
         holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,10 +71,26 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
                 goToDetails.putExtra("Title",products.get(position).getTitle());
                 goToDetails.putExtra("category",products.get(position).getCategoryId());
                 goToDetails.putExtra("price", products.get(position).getPrice());
-
+                goToDetails.putExtra("image",products.get(position).getImage());
+                goToDetails.putExtra("description",products.get(position).getDescription());
                 view.getContext().startActivity(goToDetails);
             }
         });
+
+
+
+//        holder.itemView.findViewById(R.id.fav).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goTofav = new Intent(view.getContext(), ProductView.class);
+//                goTofav.putExtra("Title",products.get(position).getTitle());
+//                goTofav.putExtra("category",products.get(position).getCategoryId());
+//                goTofav.putExtra("price", products.get(position).getPrice());
+//                goTofav.putExtra("image",products.get(position).getImage());
+//                goTofav.putExtra("description",products.get(position).getDescription());
+//                view.getContext().startActivity(goTofav);
+//            }
+//        });
     }
 
 
@@ -112,4 +108,3 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
       }
   }
 }
-

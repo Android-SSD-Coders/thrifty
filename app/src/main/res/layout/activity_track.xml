@@ -10,7 +10,7 @@
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -22,7 +22,7 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/colorWhite" />
+            app:tint="@color/white" />
 
         <TextView
 
@@ -32,7 +32,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="Order Track"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <Button
@@ -47,7 +47,7 @@
             android:paddingEnd="10dp"
             android:paddingBottom="3dp"
             android:text="Cancel"
-            android:textColor="@color/colorText"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -113,7 +113,7 @@
         android:layout_width="409dp"
         android:layout_height="2dp"
         android:layout_marginTop="14dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:textColor="@color/colorText"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/supporter_placed"
@@ -206,7 +206,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="Order Confirmed"
-        android:textColor="@color/colorText"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/supporter_confirmed"
@@ -221,7 +221,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="108dp"
         android:text="Order ٌRecieved"
-        android:textColor="@color/colorText"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/supporter_confirmed"
@@ -244,7 +244,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/view_order_confirmed"
         app:layout_constraintEnd_toEndOf="@+id/view_order_placed"
         app:layout_constraintStart_toStartOf="@+id/view_order_placed"
@@ -288,7 +288,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="Order Processed"
-        android:textColor="@color/colorText"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/supporter_processed"
@@ -310,7 +310,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/view_order_processed"
         app:layout_constraintEnd_toEndOf="@+id/view_order_confirmed"
         app:layout_constraintStart_toStartOf="@+id/view_order_confirmed"
@@ -354,7 +354,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:text="Order ready to pickup"
-        android:textColor="@color/colorText"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/supporter_pickup"
@@ -378,7 +378,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:alpha="0.5"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/view_order_pickup"
         app:layout_constraintEnd_toEndOf="@+id/view_order_processed"
         app:layout_constraintStart_toStartOf="@+id/view_order_processed"

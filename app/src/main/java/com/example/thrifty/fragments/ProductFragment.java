@@ -21,10 +21,13 @@ public class ProductFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "title";
     private static final String ARG_PARAM2 = "categoryID";
+    private static final String ARG_PARAM3 = "image";
 
     // TODO: Rename and change types of parameters
     private String Title;
     private String CategoryID;
+    private String Image;
+
 
     public ProductFragment() {
         // Required empty public constructor
@@ -36,14 +39,17 @@ public class ProductFragment extends Fragment {
      *
      * @param Title Parameter 1.
      * @param CategoryID Parameter 2.
+     * @param Image Parameter 3.
      * @return A new instance of fragment ProductFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductFragment newInstance(String Title, String CategoryID) {
+    public static ProductFragment newInstance(String Title, String CategoryID, String Image) {
         ProductFragment fragment = new ProductFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, Title);
         args.putString(ARG_PARAM2, CategoryID);
+        args.putString(ARG_PARAM3, Image);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,6 +60,7 @@ public class ProductFragment extends Fragment {
         if (getArguments() != null) {
             Title = getArguments().getString(ARG_PARAM1);
             CategoryID = getArguments().getString(ARG_PARAM2);
+            Image = getArguments().getString(ARG_PARAM3);
         }
     }
 

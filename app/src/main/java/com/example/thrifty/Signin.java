@@ -59,7 +59,7 @@ public class Signin extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent   = new Intent(Signin.this, MainActivity.class);
+                Intent intent = new Intent(Signin.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -76,9 +76,9 @@ public class Signin extends AppCompatActivity {
                         },
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
-                editor.putString("name",username.getText().toString());
+                editor.putString("name", username.getText().toString());
                 editor.apply();
-                editor.putString("email",emailText.getText().toString());
+                editor.putString("email", emailText.getText().toString());
                 editor.apply();
             }
         });
