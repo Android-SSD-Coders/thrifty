@@ -40,6 +40,14 @@
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_exit_to_app_24" />
     </Toolbar>
 
 
@@ -182,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="156dp"
-        android:text="Total"
+        android:text="price for each one:"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

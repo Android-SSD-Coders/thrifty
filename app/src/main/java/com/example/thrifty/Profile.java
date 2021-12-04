@@ -72,6 +72,20 @@ public class Profile extends AppCompatActivity {
         });
 
 
+        ImageView logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("not complemte", error.toString())
+                );
+                Intent intent = new Intent(Profile.this, Signin.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         Button addproduct = findViewById(R.id.admin1);
         addproduct.setOnClickListener(new View.OnClickListener() {
