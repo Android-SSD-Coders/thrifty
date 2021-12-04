@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
+            android:text="@string/search"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:layout_toStartOf="@+id/btnSearch"
-            android:hint="Type Anything" />
+            android:hint="@string/type_anything" />
 
         <ImageView
             android:id="@+id/btnSearch"
@@ -66,21 +66,21 @@
                 android:id="@+id/firstCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="First Category" />
+                android:text="@string/first_category" />
 
             <TextView
                 android:id="@+id/secondCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Second Category" />
+                android:text="@string/second_category" />
 
             <TextView
                 android:id="@+id/thirdCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Third Category" />
+                android:text="@string/third_category" />
 
 
         </LinearLayout>
@@ -93,7 +93,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="See All Categories"
+            android:text="@string/see_all_categories"
             android:textColor="@color/black"
             android:textStyle="bold" />
 

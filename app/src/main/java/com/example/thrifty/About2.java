@@ -18,7 +18,7 @@ public class About2 extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(About2.this,Signup.class);
+                Intent intent = new Intent(About2.this,MainActivity.class);
                 startActivity(intent);
             }
         });

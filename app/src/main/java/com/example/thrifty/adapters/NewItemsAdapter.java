@@ -28,7 +28,7 @@ import java.util.List;
 import com.example.thrifty.MainActivity;
 import com.example.thrifty.ProductView;
 import com.example.thrifty.R;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 
 public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewItemsHolder> {
@@ -62,7 +62,7 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
         category.setText(holder.product.getCategoryId());
         price.setText(holder.product.getPrice());
         des.setText(holder.product.getDescription());
-        Picasso.get().load(holder.product.getImage()).into(image);
+//        Picasso.get().load(holder.product.getImage()).into(image);
 
         holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,4 +108,3 @@ public class NewItemsAdapter extends RecyclerView.Adapter<NewItemsAdapter.NewIte
       }
   }
 }
-

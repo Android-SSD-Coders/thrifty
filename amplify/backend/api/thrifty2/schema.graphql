@@ -30,3 +30,4 @@ type Product @model @auth(rules: [{allow: private}]) @key(name: "byCategory", fi
   categoryID: ID
   image: String!
 }
+ 

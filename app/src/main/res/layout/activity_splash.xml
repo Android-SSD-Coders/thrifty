@@ -27,10 +27,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="312dp"
+        android:layout_width="0dp"
         android:layout_height="176dp"
         android:layout_weight="1"
         android:src="@drawable/logo"
         android:layout_marginBottom="40dp"/>
-
 </LinearLayout>

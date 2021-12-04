@@ -31,17 +31,6 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 counter();
         bottomNav();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(Cart.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         ImageView logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +45,18 @@ counter();
             }
         });
 
+        bottomNav();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_new_24);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Cart.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         Button button1 = findViewById(R.id.button4);
@@ -66,7 +67,6 @@ counter();
                 startActivity(intent);
             }
         });
-
 
 
 

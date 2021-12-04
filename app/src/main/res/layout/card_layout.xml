@@ -49,22 +49,9 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="35dp"
             android:background="@color/white"
-            android:text="10JD"
+            android:text="@string/_10jd"
             android:textColor="@color/grey"
             android:textSize="20sp" />
-
-
-        <!--        <Button-->
-        <!--            android:id="@+id/button2"-->
-        <!--            android:layout_width="38dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@id/categoryfrag"-->
-        <!--            android:layout_marginStart="20dp"-->
-        <!--            android:layout_marginTop="1dp"-->
-        <!--            android:backgroundTint="@color/white"-->
-
-        <!--            app:cornerRadius="40dp" />-->
-
 
         <TextView
             android:id="@+id/titlefrag1"
@@ -75,7 +62,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="10dp"
-            android:text="Item name"
+            android:text="@string/item_name"
             android:textColor="@color/grey"
             android:textSize="18sp"
             android:textStyle="normal" />
@@ -89,7 +76,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="79dp"
             android:drawablePadding="2dp"
-            android:text="category"
+            android:text="@string/category"
             tools:layout_marginStart="15dp" />
 
         <Button
@@ -101,7 +88,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/purple"
-            android:text="view"
+            android:text="@string/view"
             android:textColor="@color/white" />
 
         <ImageView
@@ -121,21 +108,11 @@
             android:layout_below="@id/idIVCourseImage"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="product name"
+            android:text="@string/product_name"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"/>
-        <!--        <Button-->
-        <!--            android:id="@+id/button2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_alignParentStart="true"-->
-        <!--            android:layout_alignParentBottom="true"-->
-        <!--            android:layout_marginStart="14dp"-->
-        <!--            android:layout_marginBottom="15dp"-->
-        <!--            android:text="View" />-->
-
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
